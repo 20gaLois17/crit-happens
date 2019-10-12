@@ -281,7 +281,7 @@ class BlackSmith {
         $this->settings->load();
 
         // Init logger
-        $this->logger = new LoggerManager($this->settings->get('logger'));
+           $this->logger = new LoggerManager($this->settings->get('logger'));
 
         // Connect to database
         $this->db = ForgeDatabase::getInstance();

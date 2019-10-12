@@ -8,7 +8,6 @@ use FrontendUserManagement\Abstracts\SecureFrontendController;
 use FrontendUserManagement\Models\User;
 use FrontendUserManagement\Services\AccountNavigationService;
 use FrontendUserManagement\Services\PasswordResetService;
-use Insertion\Services\InsertionProfileProgressService;
 use Oforge\Engine\Modules\Auth\Services\AuthService;
 use Oforge\Engine\Modules\Auth\Services\PasswordService;
 use Oforge\Engine\Modules\Core\Annotation\Endpoint\EndpointAction;
