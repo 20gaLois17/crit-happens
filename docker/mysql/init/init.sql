@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS oforge CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE oforge;
+CREATE DATABASE IF NOT EXISTS crit_happens CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE crit_happens;
 
 
 -- Adminer 4.7.1 MySQL dump
@@ -9,7 +9,7 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-USE `oforge`;
+USE `crit_happens`;
 
 DROP TABLE IF EXISTS `frontend_user_management_user`;
 CREATE TABLE `frontend_user_management_user` (
