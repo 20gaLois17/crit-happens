@@ -6,10 +6,7 @@ use FrontendUserManagement\Middleware\AccountNavigationMiddleware;
 use FrontendUserManagement\Middleware\FrontendSecureMiddleware;
 use FrontendUserManagement\Middleware\FrontendUserStateMiddleware;
 use FrontendUserManagement\Models\AccountNavigation;
-use FrontendUserManagement\Models\NickNameValue;
 use FrontendUserManagement\Models\User;
-use FrontendUserManagement\Models\UserAddress;
-use FrontendUserManagement\Models\UserDetail;
 use FrontendUserManagement\Services\AccountNavigationService;
 use FrontendUserManagement\Widgets\DashboardWidgetHandler;
 use Oforge\Engine\Modules\AdminBackend\Core\Enums\DashboardWidgetPosition;
@@ -29,10 +26,7 @@ class Bootstrap extends AbstractBootstrap {
             Controller\Frontend\LoginController::class,
             Controller\Frontend\LoginRegistrationController::class,
             Controller\Frontend\LogoutController::class,
-            Controller\Frontend\RegistrationController::class,
-            Controller\Frontend\ForgotPasswordController::class,
             Controller\Frontend\AccountController::class,
-            Controller\Frontend\UserDetailsController::class,
             Controller\Backend\BackendFrontendUserManagementController::class,
             Controller\Backend\BackendNickNameGeneratorController::class,
         ];
@@ -51,21 +45,13 @@ class Bootstrap extends AbstractBootstrap {
         $this->models = [
             AccountNavigation::class,
             User::class,
-            UserDetail::class,
-            UserAddress::class,
-            NickNameValue::class,
         ];
 
         $this->services = [
-            'frontend.user.management.password.reset'     => Services\PasswordResetService::class,
             'frontend.user.management.login'              => Services\FrontendUserLoginService::class,
-            'frontend.user.management.registration'       => Services\RegistrationService::class,
             'frontend.user.management.account.navigation' => Services\AccountNavigationService::class,
             'frontend.user.management.user'               => Services\UserService::class,
-            'frontend.user.management.user.details'       => Services\UserDetailsService::class,
-            'frontend.user.management.user.address'       => Services\UserAddressService::class,
             'frontend.user'                               => Services\FrontendUserService::class,
-            'password.reset'                              => Services\PasswordResetService::class,
         ];
     }
 
@@ -142,14 +128,6 @@ class Bootstrap extends AbstractBootstrap {
             'order'    => 1,
             'icon'     => 'fa fa-list',
             'path'     => 'backend_frontend_user_management',
-            'parent'   => 'backend_frontend_user_management',
-            'position' => 'sidebar',
-        ]);
-        $backendNavigationService->add([
-            'name'     => 'backend_frontend_user_management_nickname_generator',
-            'order'    => 2,
-            'icon'     => 'fa fa-brain',
-            'path'     => 'backend_frontend_user_management_nickname_generator',
             'parent'   => 'backend_frontend_user_management',
             'position' => 'sidebar',
         ]);

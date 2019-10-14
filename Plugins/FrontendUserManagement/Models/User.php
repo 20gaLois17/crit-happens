@@ -5,6 +5,7 @@ namespace FrontendUserManagement\Models;
 use Doctrine\ORM\Mapping as ORM;
 use Oforge\Engine\Modules\Auth\Models\User\BaseUser;
 use Oforge\Engine\Modules\Core\Helper\SessionHelper;
+use PhpParser\Builder\Class_;
 
 /**
  * @ORM\Entity
@@ -18,33 +19,25 @@ class User extends BaseUser {
      */
     private $guid;
     /**
-     * @var UserDetail $detail
-     * @ORM\OneToOne(targetEntity="UserDetail", mappedBy="user", fetch="EXTRA_LAZY", cascade={"all"})
+     * @var string $class
+     * @ORM\Column(name="class", type="string", nullable=true)
      */
-    private $detail;
-    /**
-     * @var UserAddress $address
-     * @ORM\OneToOne(targetEntity="UserAddress", mappedBy="user", fetch="EXTRA_LAZY", cascade={"all"})
-     */
-    private $address;
+    private $class;
 
     public function __construct() {
         parent::__construct();
     }
-
     /** @ORM\PrePersist */
     public function updatedGuid() : void {
         $newGuid = SessionHelper::generateGuid();
         $this->setGuid($newGuid);
     }
-
     /**
      * @return string
      */
     public function getGuid() : string {
         return $this->guid;
     }
-
     /**
      * @param string $guid
      *
@@ -55,26 +48,16 @@ class User extends BaseUser {
 
         return $this;
     }
-
     /**
-     * @return UserDetail|null
+     * @return string
      */
-    public function getDetail() : ?UserDetail {
-        return $this->detail;
+    public function getClass() : string {
+        return $this->class;
     }
-
     /**
-     * @return UserAddress|null
+     * @param string $class
      */
-    public function getAddress() : ?UserAddress {
-        return $this->address;
+    public function setClass(string $class) {
+        $this->class = $class;
     }
-
-    /**
-     * @param UserDetail $detail
-     */
-    public function setDetail(UserDetail $detail) : void {
-        $this->detail = $detail;
-    }
-
 }
