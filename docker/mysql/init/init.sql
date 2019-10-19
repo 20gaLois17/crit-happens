@@ -1,7 +1,3 @@
-CREATE DATABASE IF NOT EXISTS crit_happens CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE crit_happens;
-
-
 -- Adminer 4.7.1 MySQL dump
 
 SET NAMES utf8mb4;
@@ -9,7 +5,8 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-USE `crit_happens`;
+set global innodb_file_format = BARRACUDA;
+set global innodb_large_prefix = ON;
 
 DROP TABLE IF EXISTS `frontend_user_management_user`;
 CREATE TABLE `frontend_user_management_user` (
@@ -25,7 +22,7 @@ CREATE TABLE `frontend_user_management_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `frontend_user_management_user` (`id`, `email`, `password`, `guid`, `created_at`, `updated_at`, `active`) VALUES
-(1,	'testuser@oforge.com',	'$2y$10$Dz8M/0r1RWNLV0AGVlx0be8BaEF2dQhJVdY54ShKefg9yXZPs4t8G',	'00000000-0000-4000-8000-000000000000',	NOW(),	NOW(),	1);
+(1,	'Leobs', '$2y$10$Dz8M/0r1RWNLV0AGVlx0be8BaEF2dQhJVdY54ShKefg9yXZPs4t8G',	'00000000-0000-4000-8000-000000000000',	NOW(),	NOW(),	1);
 
 DROP TABLE IF EXISTS `oforge_auth_backend_user`;
 CREATE TABLE `oforge_auth_backend_user` (
@@ -43,7 +40,7 @@ CREATE TABLE `oforge_auth_backend_user` (
 
 -- insert default user with password geheim
 INSERT INTO `oforge_auth_backend_user` (`id`, `email`, `password`, `role`, `created_at`, `updated_at`, `active`) VALUES
-(1,	'admin@local.host',	'$2y$10$fnI/7By7ojrwUv51JRi.K.yskzFSy0N4iiE6VheIJUh6ln1EsYWSi',	1, NOW(), NOW(), 1);
+(1,	'leobs@crit.happens',	'$2y$10$fnI/7By7ojrwUv51JRi.K.yskzFSy0N4iiE6VheIJUh6ln1EsYWSi',	1, NOW(), NOW(), 1);
 
 
 DROP TABLE IF EXISTS `oforge_i18n_language`;

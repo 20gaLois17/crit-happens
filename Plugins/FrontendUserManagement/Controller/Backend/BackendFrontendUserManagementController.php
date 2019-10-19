@@ -28,8 +28,8 @@ class BackendFrontendUserManagementController extends BaseCrudController {
             'crud'  => [
                 'index'  => 'readonly',
                 'view'   => 'readonly',
-                'create' => 'off',
-                'update' => 'off',
+                'create' => 'on',
+                'update' => 'on',
                 'delete' => 'readonly',
             ],
         ],
@@ -40,24 +40,9 @@ class BackendFrontendUserManagementController extends BaseCrudController {
             'crud'  => [
                 'index'  => 'readonly',
                 'view'   => 'readonly',
-                'create' => 'off',
-                'update' => 'off',
+                'create' => 'on',
+                'update' => 'on',
                 'delete' => 'readonly',
-            ],
-        ],
-        [
-            'name'     => 'contactEmail',
-            'type'     => CrudDataTypes::CUSTOM,
-            'label'    => ['key' => 'plugin_frontend_user_management_property_contact_email', 'default' => 'Contact email'],
-            'crud'     => [
-                'index'  => 'readonly',
-                'view'   => 'readonly',
-                'create' => 'off',
-                'update' => 'off',
-                'delete' => 'readonly',
-            ],
-            'renderer' => [
-                'custom' => 'Plugins/FrontendUserManagement/Backend/BackendFrontendUserManagement/CRUD/RenderContactEmail.twig',
             ],
         ],
         [
@@ -67,72 +52,12 @@ class BackendFrontendUserManagementController extends BaseCrudController {
             'crud'     => [
                 'index'  => 'off',
                 'view'   => 'readonly',
-                'create' => 'off',
-                'update' => 'off',
+                'create' => 'on',
+                'update' => 'on',
                 'delete' => 'readonly',
             ],
             'renderer' => [
                 'custom' => 'Plugins/FrontendUserManagement/Backend/BackendFrontendUserManagement/CRUD/RenderProfileImage.twig',
-            ],
-        ],
-        [
-            'name'     => 'firstName',
-            'type'     => CrudDataTypes::CUSTOM,
-            'label'    => ['key' => 'plugin_frontend_user_management_property_first_name', 'default' => 'First name'],
-            'crud'     => [
-                'index'  => 'readonly',
-                'view'   => 'readonly',
-                'create' => 'off',
-                'update' => 'off',
-                'delete' => 'readonly',
-            ],
-            'renderer' => [
-                'custom' => 'Plugins/FrontendUserManagement/Backend/BackendFrontendUserManagement/CRUD/RenderFirstName.twig',
-            ],
-        ],
-        [
-            'name'     => 'lastName',
-            'type'     => CrudDataTypes::CUSTOM,
-            'label'    => ['key' => 'plugin_frontend_user_management_property_last_name', 'default' => 'Last name'],
-            'crud'     => [
-                'index'  => 'readonly',
-                'view'   => 'readonly',
-                'create' => 'off',
-                'update' => 'off',
-                'delete' => 'readonly',
-            ],
-            'renderer' => [
-                'custom' => 'Plugins/FrontendUserManagement/Backend/BackendFrontendUserManagement/CRUD/RenderLastName.twig',
-            ],
-        ],
-        [
-            'name'     => 'nickName',
-            'type'     => CrudDataTypes::STRING,
-            'label'    => ['key' => 'plugin_frontend_user_management_property_nickname', 'default' => 'Nickname'],
-            'crud'     => [
-                'index'  => 'readonly',
-                'view'   => 'readonly',
-                'create' => 'off',
-                'update' => 'off',
-                'delete' => 'readonly',
-            ],
-            'renderer' => [
-                'custom' => 'Plugins/FrontendUserManagement/Backend/BackendFrontendUserManagement/CRUD/RenderNickName.twig',
-            ],
-        ],
-        [
-            'name'     => 'phoneNumber',
-            'type'     => CrudDataTypes::CUSTOM,
-            'label'    => ['key' => 'plugin_frontend_user_management_property_phone_number', 'default' => 'Phone number'],
-            'crud'     => [
-                'index'  => 'readonly',
-                'view'   => 'readonly',
-                'create' => 'off',
-                'update' => 'off',
-                'delete' => 'readonly',
-            ],
-            'renderer' => [
-                'custom' => 'Plugins/FrontendUserManagement/Backend/BackendFrontendUserManagement/CRUD/RenderPhoneNumber.twig',
             ],
         ],
         [
@@ -159,27 +84,22 @@ class BackendFrontendUserManagementController extends BaseCrudController {
      */
     protected $crudActions = [
         'index'  => true,
-        'create' => false,
+        'create' => true,
         'view'   => true,
-        'update' => false,
+        'update' => true,
         'delete' => true,
     ];
 
     /** @var array $indexFilter */
     protected $indexFilter = [
-        'contactEmail' => [
+        'email' => [
             'type'    => CrudFilterType::TEXT,
             'label'   => ['key' => 'plugin_frontend_user_management_filter_email', 'default' => 'Search in email'],
             'compare' => CrudFilterComparator::LIKE,
         ],
-        'lastName'     => [
+        'class'     => [
             'type'    => CrudFilterType::TEXT,
-            'label'   => ['key' => 'plugin_frontend_user_management_filter_last_name', 'default' => 'Search in last name'],
-            'compare' => CrudFilterComparator::LIKE,
-        ],
-        'nickName'     => [
-            'type'    => CrudFilterType::TEXT,
-            'label'   => ['key' => 'plugin_frontend_user_management_filter_nickname', 'default' => 'Search in nickname'],
+            'label'   => ['key' => 'plugin_frontend_user_management_filter_class', 'default' => 'Search in class'],
             'compare' => CrudFilterComparator::LIKE,
         ],
     ];
