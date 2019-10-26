@@ -52,6 +52,7 @@ class Bootstrap extends AbstractBootstrap {
             'frontend.user.management.account.navigation' => Services\AccountNavigationService::class,
             'frontend.user.management.user'               => Services\UserService::class,
             'frontend.user'                               => Services\FrontendUserService::class,
+            'password.reset'                              => Services\PasswordResetService::class,
         ];
     }
 
@@ -88,14 +89,6 @@ class Bootstrap extends AbstractBootstrap {
             'name'     => 'frontend_account_dashboard',
             'order'    => 1,
             'path'     => 'frontend_account_dashboard',
-            'position' => 'sidebar',
-        ]);
-
-        $accountNavigationService->put([
-            'name'     => 'frontend_account_details',
-            'order'    => 1,
-            'icon'     => 'contact',
-            'path'     => 'frontend_account_details',
             'position' => 'sidebar',
         ]);
         $accountNavigationService->put([

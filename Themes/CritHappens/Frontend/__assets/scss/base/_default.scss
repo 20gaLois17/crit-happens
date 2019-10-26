@@ -5,3 +5,44 @@
 h1, h2, h3, h4, h5, h6 {
     color: $color-primary;
 }
+
+.form__input {
+    color: #2a2438;
+    &::placeholder {
+        color: $color-secondary;
+    }
+}
+
+.form__input.form__input--submit {
+    color: #2a2438;
+
+}
+
+.flash {
+    margin: 1rem 0;
+    padding: 1rem;
+
+    display: flex;
+    align-items: center;
+
+    &--success {
+        background: $color-primary;
+        color: #2a2438;
+    }
+    &--info {
+        background: $color-primary;
+        color: #2a2438;
+    }
+    &--warning {
+        background: $color-primary;
+        color: #2a2438;
+    }
+    &--error {
+        background: $color-primary;
+        color: #2a2438;
+    }
+    &__message {
+        color: inherit;
+        margin-left: $size-large;
+    }
+}
