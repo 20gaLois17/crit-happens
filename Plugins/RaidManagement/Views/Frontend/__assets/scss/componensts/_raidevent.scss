@@ -1,0 +1,30 @@
+.raid__event_container, .raid__detail_container {
+
+    .raid_event {
+        padding: .6rem;
+        background: #2a2438;
+        margin-bottom: 1rem;
+
+        .icon {
+            width: 12rem;
+            height: auto;
+            margin-right: 1.2rem;
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .raid_details {
+            .title, .date, .description {
+                margin-bottom: .4rem;
+            }
+            .title {
+                font-size: 2rem;
+                font-weight: 700;
+            }
+        }
+        .button--primary {
+            color: $color-secondary;
+        }
+
+    }
+}

@@ -1,0 +1,50 @@
+{% extends "@parent/Frontend/Layout.twig" %}
+{% block content %}
+
+    <div class="account content">
+        {% block account %}
+            <div class="panel panel--account flex">
+                {% block account__sidebar %}
+                    {% include 'Plugins/FrontendUserManagement/Frontend/Components/Sidebar.twig' %}
+                {% endblock account__sidebar %}
+
+                {% block account__content %}
+                    <div class="account__content">
+                        <h2>Raidanmeldung</h2>
+                        <div class="raid__event_container">
+
+                            {% for raid in raids %}
+
+                                <div class="raid_event flex flex--row">
+                                    <div class="icon" style="background-image: url('{{ media(raid.icon) }}')"></div>
+                                    <div class="raid_details flex flex--column">
+                                        <a href="{{ url('frontend_account_raids_detail', {'raidId': raid.id }) }}">
+                                            <div class="title">{{ raid.title }}</div>
+                                        </a>
+                                        <div class="date">{{ raid.date.date|date("d.m.Y") }}</div>
+                                        <div class="description">{{ raid.description }}</div>
+                                        <div class="form">
+
+                                            <a href="{{ url('frontend_account_raids_toggleRaid', {'raidId': raid.id }) }}">
+                                                {% if raid.id not in user_raids %}
+                                                    <div class="button button--secondary">
+                                                        Anmelden
+                                                    </div>
+                                                {% else %}
+                                                    <div class="button button--primary">
+                                                        Abmelden
+                                                    </div>
+                                                {% endif %}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                {% endblock account__content %}
+            </div>
+        {% endblock account %}
+    </div>
+{% endblock content %}
