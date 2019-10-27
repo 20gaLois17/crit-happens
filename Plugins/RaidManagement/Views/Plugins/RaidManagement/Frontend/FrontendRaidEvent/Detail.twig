@@ -23,7 +23,7 @@
                             <div class="flex flex--row">
                                 {% set classes = ['warrior', 'priest', 'druid', 'shaman', 'mage', 'warlock', 'hunter', 'rogue'] %}
                                 {% for class in classes %}
-                                    <div class="flex flex--column">
+                                    <div class="flex flex--column raid_member">
 
                                         {% set icon = content( class ) %}
                                         {% set icon_media = media( icon.url, 50 ) %}
