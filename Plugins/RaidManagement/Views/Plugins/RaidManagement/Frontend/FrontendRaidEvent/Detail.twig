@@ -20,12 +20,29 @@
                                     <div class="description">{{ raid.description }}</div>
                                 </div>
                             </div>
+                            <div class="flex flex--row">
+                                {% set classes = ['warrior', 'priest', 'druid', 'shaman', 'mage', 'warlock', 'hunter', 'rogue'] %}
+                                {% for class in classes %}
+                                    <div class="flex flex--column">
 
-                            {% for member in raid_members %}
+                                        {% set icon = content( class ) %}
+                                        {% set icon_media = media( icon.url, 50 ) %}
 
-                                <div>{{ member.email }}</div>
+                                        <div class="class__icon"
+                                             style="background-image:url('{{ icon_media }}'); background-size: cover">
+                                        </div>
 
-                            {% endfor %}
+                                        {% for member in raid_members %}
+                                            {% if member.class == class %}
+                                                <div>{{ member.email }}</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+
+
                         </div>
                     </div>
 
