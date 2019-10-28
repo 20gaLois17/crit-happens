@@ -29,6 +29,12 @@
     }
     .raid_member {
         justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .class__container {
+        min-width: 100px;
+        margin-bottom: 2rem;
     }
 
     .class__icon {

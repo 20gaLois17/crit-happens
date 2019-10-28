@@ -10,7 +10,7 @@
 
                 {% block account__content %}
                     <div class="account__content">
-                        <h2>Raidteilnehmer</h2>
+                        <h2 class="account__title">Raidteilnehmer</h2>
                         <div class="raid__detail_container">
                             <div class="raid_event flex flex--row">
                                 <div class="icon" style="background-image: url('{{ media(raid.icon) }}')"></div>
@@ -23,7 +23,7 @@
                             <div class="flex flex--row raid__member">
                                 {% set classes = ['warrior', 'priest', 'druid', 'shaman', 'mage', 'warlock', 'hunter', 'rogue'] %}
                                 {% for class in classes %}
-                                    <div class="flex flex--column">
+                                    <div class="flex flex--column class__container">
 
                                         {% set icon = content( class ) %}
                                         {% set icon_media = media( icon.url, 50 ) %}
