@@ -10,13 +10,17 @@
 
                 {% block account__content %}
                     <div class="account__content">
-                        <h2>Raidanmeldung</h2>
+                        <h2 class="account__title">Raidanmeldung</h2>
+                        <div style="margin-bottom: 1.2rem;">
+                            Für eine Übersicht aller Raidteilnehmer auf das Icon oder den Titel klicken.
+                        </div>
                         <div class="raid__event_container">
 
                             {% for raid in raids %}
 
                                 <div class="raid_event flex flex--row">
-                                    <div class="icon" style="background-image: url('{{ media(raid.icon) }}')"></div>
+                                    <a href="{{ url('frontend_account_raids_detail', {'raidId': raid.id }) }}"
+                                       class="icon" style="background-image: url('{{ media(raid.icon) }}')"></a>
                                     <div class="raid_details flex flex--column">
                                         <a href="{{ url('frontend_account_raids_detail', {'raidId': raid.id }) }}">
                                             <div class="title">{{ raid.title }}</div>
