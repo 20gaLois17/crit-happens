@@ -23,7 +23,7 @@ class RaidManagementService extends AbstractDatabaseAccess {
      * @throws ORMException
      */
     public function listActiveRaids() {
-        $raidEntities = $this->repository('raid')->findBy(['active' => true]);
+        $raidEntities = $this->repository('raid')->findBy(['active' => true], ['date' => 'ASC']);
         $raids = [];
         /** @var RaidEvent $raidEntity */
         foreach ($raidEntities as $raidEntity) {
