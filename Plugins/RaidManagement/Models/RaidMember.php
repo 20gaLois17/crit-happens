@@ -39,6 +39,12 @@ class RaidMember extends AbstractModel {
     private $raid;
 
     /**
+     * @var string
+     * @ORM\Column(name="role", type="string", nullable=true)
+     */
+    private $role;
+
+    /**
      * @var DateTime
      * @ORM\Column(name="crated_at", type="datetime", nullable=false)
      */
@@ -94,6 +100,24 @@ class RaidMember extends AbstractModel {
      */
     public function getRaid() {
         return $this->raid;
+    }
+
+    /**
+     * @param $role
+     *
+     * @return RaidMember
+     */
+    public function setRole($role) {
+        $this->role = $role;
+
+        return $this->role;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole() {
+        return $this->role;
     }
 
     /**

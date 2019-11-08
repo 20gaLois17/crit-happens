@@ -29,17 +29,56 @@
                                         <div class="description">{{ raid.description }}</div>
                                         <div class="form">
 
-                                            <a href="{{ url('frontend_account_raids_toggleRaid', {'raidId': raid.id }) }}">
-                                                {% if raid.id not in user_raids %}
-                                                    <div class="button button--secondary">
-                                                        Anmelden
+                                            {% if not user_raids[raid.id] %}
+                                                <form
+                                                    action="{{ url('frontend_account_raids_toggleRaid', {'raidId': raid.id }) }}"
+                                                    method="post">
+                                                    <div class="roles">
+                                                        <input style="display: none" id="tank{{ raid.id }}" type="radio"
+                                                               name="role" value="tank" required>
+                                                        <label class="role" for="tank{{ raid.id }}">
+                                                            {% set icon_tank = content('icon_tank') %}
+                                                            <i class="icon icon__role"
+                                                               style="background-image: url('{{ media(content('icon_tank').url, 50) }}');">
+                                                            </i>
+                                                        </label>
+                                                        <input style="display: none" id="healer{{ raid.id }}"
+                                                               type="radio" name="role" value="healer" required>
+                                                        <label class="role" for="healer{{ raid.id }}">
+                                                            <i class="icon icon__role"
+                                                               style="background-image: url('{{ media(content('icon_healer').url, 50) }}');">
+                                                            </i>
+                                                        </label>
+                                                        <input style="display: none" id="dps{{ raid.id }}" type="radio"
+                                                               name="role" value="dps" required checked>
+                                                        <label class="role" for="dps{{ raid.id }}">
+                                                            <i class="icon icon__role"
+                                                               style="background-image: url('{{ media(content('icon_dps').url, 50) }}');">
+                                                            </i>
+                                                        </label>
                                                     </div>
-                                                {% else %}
-                                                    <div class="button button--primary">
-                                                        Abmelden
+                                                    <input type="submit" value="anmelden"
+                                                           class="button button--secondary">
+                                                </form>
+
+                                            {% else %}
+                                                <form
+                                                    action="{{ url('frontend_account_raids_toggleRaid', {'raidId': raid.id }) }}"
+                                                    method="post">
+                                                    <div class="chosen_roll">
+                                                        <span>
+                                                            Deine Rolle:
+                                                        </span>
+                                                        <i class="icon icon__role"
+                                                           style="background-image: url('{{ media(content('icon_' ~ user_raids[raid.id].role).url, 50) }}')">
+                                                        </i>
                                                     </div>
-                                                {% endif %}
-                                            </a>
+
+                                                    <input type="submit" value="abmelden"
+                                                           class="button button--primary">
+
+                                                </form>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>

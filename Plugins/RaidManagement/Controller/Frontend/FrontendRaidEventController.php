@@ -58,6 +58,10 @@ class FrontendRaidEventController extends SecureFrontendController {
      */
     public function toggleRaidAction(Request $request, Response $response, $args) {
 
+        if (!$request->isPost()) {
+            print('invalid method'); die();
+        }
+
         $raidId = $args['raidId'];
 
         if(is_null($raidId)) {
@@ -77,7 +81,14 @@ class FrontendRaidEventController extends SecureFrontendController {
         $frontendUserService = Oforge()->Services()->get('frontend.user');
 
         $user = $frontendUserService->getUser();
-        if ($raidManagementService->toggleRaidSubscription($user, $raid)) {
+
+        if(isset($_POST['role'])) {
+            if (!$this->roleCheck($user->getClass(), $_POST['role'])) {
+                return RouteHelper::redirect($response, 'frontend_account_raids');
+            }
+        }
+
+        if ($raidManagementService->toggleRaidSubscription($user, $raid, $_POST)) {
             Oforge()->View()->Flash()->addMessage('success', 'Du bist beim Raid dabei!');
         } else {
             Oforge()->View()->Flash()->addMessage('warning', 'Du hast dich vom Raid abgemeldet!');
@@ -85,6 +96,23 @@ class FrontendRaidEventController extends SecureFrontendController {
 
         return RouteHelper::redirect($response, 'frontend_account_raids');
 
+    }
+
+    private function roleCheck(string $class, string $role) {
+        $tanks = ['warrior', 'druid'];
+        $healer = ['priest', 'shaman', 'druid'];
+
+        if ($role == 'dps') return true;
+
+        if ($role == 'tank' && !in_array($class, $tanks)) {
+            Oforge()->View()->Flash()->addMessage('error', 'Deine Klasse sollte nicht tanken, bitte wähle eine andere Rolle!');
+            return false;
+        }
+        if ($role == 'healer' && !in_array($class, $healer)) {
+            Oforge()->View()->Flash()->addMessage('error', 'Deine Klasse sollte nicht heilen, bitte wähle eine andere Rolle!');
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -114,9 +142,11 @@ class FrontendRaidEventController extends SecureFrontendController {
         }
 
         $raidMembers = $raidManagementService->listRaidMembers($raid);
+        $raidRoles   = $raidManagementService->countRoles($raid);
         Oforge()->View()->assign([
             'raid' => $raid->toArray(),
-            'raid_members' => $raidMembers
+            'raid_members' => $raidMembers,
+            'roles' => $raidRoles
         ]);
 
     }
