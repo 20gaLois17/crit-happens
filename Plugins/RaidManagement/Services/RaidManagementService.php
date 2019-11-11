@@ -88,7 +88,9 @@ class RaidManagementService extends AbstractDatabaseAccess {
         $users              = [];
         /** @var RaidMember $raidMemberEntity */
         foreach ($raidMemberEntities as $raidMemberEntity) {
-            $users[] = $raidMemberEntity->getUser()->toArray(2, ['guid', 'password', 'createdAt', 'updatedAt', 'sidebar_navigation']);
+            $raidMember = $raidMemberEntity->getUser()->toArray(2, ['guid', 'password', 'createdAt', 'updatedAt', 'sidebar_navigation']);
+            $raidMember['role'] = $raidMemberEntity->getRole();
+            $users[] = $raidMember;
         }
 
         return $users;

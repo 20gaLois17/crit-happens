@@ -18,7 +18,7 @@
                                     <div class="title">{{ raid.title }}</div>
                                     <div class="date">{{ raid.date.date|date("d.m.Y") }}</div>
                                     <div class="description">{{ raid.description }}</div>
-                                    <div class="flex flex--row" style="line-height: 2.65rem;">
+                                    <div class="flex flex<--row" style="line-height: 2.65rem;">
                                         <span>{{ roles.tank }}</span>-<i class="icon icon__role" style="background-image: url('{{ media(content('icon_tank').url, 50) }}')"></i>
                                         <span>{{ roles.healer }}</span>-<i class="icon icon__role" style="background-image: url('{{ media(content('icon_healer').url, 50) }}')"></i>
                                         <span>{{ roles.dps }}</span>-<i class="icon icon__role" style="background-image: url('{{ media(content('icon_dps').url, 50) }}')"></i>
@@ -28,7 +28,7 @@
                             <div class="flex flex--row raid__member">
                                 {% set classes = ['warrior', 'priest', 'druid', 'shaman', 'mage', 'warlock', 'hunter', 'rogue'] %}
                                 {% for class in classes %}
-                                    <div class="flex flex--column class__container">
+                                    <div class="flex flex--column class__container" style="text-align: center">
 
                                         {% set icon = content( class ) %}
                                         {% set icon_media = media( icon.url, 50 ) %}
@@ -36,18 +36,15 @@
                                         <div class="class__icon"
                                              style="background-image:url('{{ icon_media }}'); background-size: cover">
                                         </div>
-
                                         {% for member in raid_members %}
                                             {% if member.class == class %}
-                                                <div>{{ member.email }}</div>
+                                                <div class="{{ member.role }}">{{ member.email }}</div>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
 
                                 {% endfor %}
                             </div>
-
-
                         </div>
                     </div>
 

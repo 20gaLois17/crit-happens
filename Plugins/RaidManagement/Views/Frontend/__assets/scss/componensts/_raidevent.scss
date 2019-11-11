@@ -64,6 +64,15 @@
             cursor: pointer;
         }
     }
+    .dps {
+        color: #de1f12;
+    }
+    .tank {
+        color: #128cde;
+    }
+    .healer {
+        color: #24b017;
+    }
 
     input:checked + label {
         .icon {
