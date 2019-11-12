@@ -14,7 +14,6 @@ use RaidManagement\Models\RaidEvent;
 use RaidManagement\Services\RaidManagementService;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Slim\Router;
 
 /**
  * Class FrontendRaidEventController

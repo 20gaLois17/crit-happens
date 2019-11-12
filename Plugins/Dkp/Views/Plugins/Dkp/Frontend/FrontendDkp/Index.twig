@@ -1,0 +1,34 @@
+{% extends '@parent/Frontend/Layout.twig' %}
+{% block content %}
+
+    <div class="account content">
+        {% block account %}
+            <div class="panel panel--account flex">
+                {% block account__sidebar %}
+                    {% include 'Plugins/FrontendUserManagement/Frontend/Components/Sidebar.twig' %}
+                {% endblock account__sidebar %}
+
+                {% block account__content %}
+                    <div class="account__content">
+                        <h2 class="account__title">Infos zum DKP-System</h2>
+                        <p>Ab dem 14.11.2019 wird der Raid-Loot über ein internes DKP-System verteilt.</p>
+                        <br>
+                        <p>Dies sind die Regeln zum Start:</p>
+                        <br>
+                        <p>1) Für die 3 Raids am 13.11. / 14.11. / 17.11. wird es einen fixen DKP-Bonus für alle
+                            Teilnehmer geben.</p><br>
+                        <p>2) Auf ein Item wird von allen Interessenten ein Gebot an den Lootmaster gewhispert. Das
+                            Gebot kann nur maximal so hoch sein wie der eigene DKP-Punktestand. Das Höchste Gebot
+                            gewinnt das
+                            Item zum Preis der gebotenen DKP. Bei gleichen Geboten wird um das Vorrecht gewürfelt.
+                        </p><br>
+                        <p>
+                            3) Weitere Details wie die exakten DKP-Belohnungen bei Raidteilnahme werden im späteren
+                            Verlauf noch bekannt gegeben.
+                        </p>
+                    </div>
+                {% endblock account__content %}
+            </div>
+        {% endblock account %}
+    </div>
+{% endblock content %}
