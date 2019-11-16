@@ -78,6 +78,24 @@ class BackendFrontendUserManagementController extends BaseCrudController {
                 'delete' => 'readonly',
             ],
         ],
+        [
+            'name'  => 'dkp',
+            'type'  => CrudDataTypes::INT,
+            'label' => [
+                'key'     => 'dpk',
+                'default' => [
+                    'en' => 'DKP',
+                    'de' => 'DKP',
+                ],
+            ],
+            'crud'  => [
+                'index'  => 'editable',
+                'view'   => 'readonly',
+                'create' => 'editable',
+                'update' => 'editable',
+                'delete' => 'readonly',
+            ],
+        ],
     ];
     /**
      * @var array $crudActions Keys of 'add|edit|delete'

@@ -40,8 +40,6 @@ class FrontendRaidEventController extends SecureFrontendController {
             'raids' => $raidManagementService->listActiveRaids(),
             'user_raids' => $raidManagementService->listUserParticipation($user),
         ]);
-
-
     }
 
     /**

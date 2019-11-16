@@ -23,9 +23,15 @@ class User extends BaseUser {
      * @ORM\Column(name="class", type="string", nullable=true)
      */
     private $class;
+    /**
+     * @var int $dpk
+     * @ORM\Column(name="dkp", type="integer", nullable=true)
+     */
+    private $dkp;
 
     public function __construct() {
         parent::__construct();
+        $this->dkp = 0;
     }
     /** @ORM\PrePersist */
     public function updatedGuid() : void {
@@ -56,8 +62,26 @@ class User extends BaseUser {
     }
     /**
      * @param string $class
+     * @return User
      */
     public function setClass(string $class) {
         $this->class = $class;
+
+        return $this;
+    }
+    /**
+     * @param int $dkp
+     * @return User
+     */
+    public function setDkp(int $dkp) {
+        $this->dkp=$dkp;
+
+        return $this;
+    }
+    /**
+     * @return int|null
+     */
+    public function getDkp() : ?int {
+        return $this->dkp;
     }
 }
