@@ -57,6 +57,16 @@ class BackendRaidMemberController extends BaseCrudController {
             ],
         ],
         [
+            'name'  => 'created',
+            'label' => ['key' => 'created', 'default' => 'Erstellt'],
+            'type'  => CrudDataTypes::DATETIME,
+            'crud'  => [
+                'index'  => 'readonly',
+                'view'   => 'readonly',
+                'delete' => 'readonly'
+            ],
+        ],
+        [
             'name'  => 'role',
             'label' => ['key' => 'role', 'default' => 'Role'],
             'type'  => CrudDataTypes::STRING,

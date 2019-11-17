@@ -10,6 +10,7 @@
 
                 {% block account__content %}
                     <div class="account__content">
+                        <h2 class="account__title">Deine DKP: {{ current_user.dkp }}</h2>
                         <h2 class="account__title">Infos zum DKP-System</h2>
                         <p>Ab dem 14.11.2019 wird der Raid-Loot über ein internes DKP-System verteilt.</p>
                         <br>
@@ -23,7 +24,12 @@
                             Item zum Preis der gebotenen DKP. Bei gleichen Geboten wird um das Vorrecht gewürfelt.
                         </p><br>
                         <p>
-                           3) Falls nur ein Spieler ein Gebot abgibt, wird das Item unabhängig vom eigentlichen Gebot für den Mindestsatz von 5 DKP vergeben. 
+
+                            3) Falls nur ein Spieler ein Gebot abgibt, wird das Item unabhängig vom eigentlichen Gebot für den Mindestsatz von 5 DKP vergeben.
+                        </p>
+                        <br>
+                        <p>
+                            4) Für Anregungen und konstruktive Kritik haben wir in unserem Gilden-Discord einen Channel eingerichtet.
                         </p>
 			<br>
 			<p>
@@ -35,3 +41,4 @@
         {% endblock account %}
     </div>
 {% endblock content %}
+
