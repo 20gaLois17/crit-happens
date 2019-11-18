@@ -38,7 +38,7 @@
                                         </div>
                                         {% for member in raid_members %}
                                             {% if member.class == class %}
-                                                <div class="{{ member.role }}">{{ member.email }}</div>
+                                                <div class="{{ member.role }}">{{ member.email }} ({{ member.dkp }})</div>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
