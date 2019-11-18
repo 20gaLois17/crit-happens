@@ -2,6 +2,7 @@
 
 namespace RaidManagement\Services;
 
+use DateTime;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use FrontendUserManagement\Models\User;
@@ -104,11 +105,37 @@ class RaidManagementService extends AbstractDatabaseAccess {
      */
     public function countRoles(RaidEvent $raid) {
         $roles = [];
-        $roles['tank'] = $this->repository('raid_member')->count(['raid' => $raid, 'role' => 'tank']);
+        $roles['tank']   = $this->repository('raid_member')->count(['raid' => $raid, 'role' => 'tank']);
         $roles['healer'] = $this->repository('raid_member')->count(['raid' => $raid, 'role' => 'healer']);
-        $roles['dps'] = $this->repository('raid_member')->count(['raid' => $raid, 'role' => 'dps']);
+        $roles['dps']    = $this->repository('raid_member')->count(['raid' => $raid, 'role' => 'dps']);
 
         return $roles;
     }
 
+    /**
+     * @param $raid_id
+     * @param $amount
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function grantAttendanceDkp($raid_id, $amount) {
+
+        $em   = Oforge()->DB()->getForgeEntityManager();
+        /** @var RaidEvent $raid */
+        $raid = $em->getRepository(RaidEvent::class)->find($raid_id);
+        if($raid->getDate() > new DateTime('now')) {
+            die("this raid is not over yet \n");
+        }
+        $raidMemberEntities = $em->getRepository(RaidMember::class)->findBy(['raid' => $raid_id]);
+
+        /** @var RaidMember $raidMemberEntity */
+        foreach($raidMemberEntities as $raidMemberEntity) {
+            $raidMember = $raidMemberEntity->getUser();
+            $currentDkp = $raidMember->getDkp();
+            $raidMember->setDkp($currentDkp + $amount);
+            $em->update($raidMember);
+            $em->remove($raidMemberEntity);
+        }
+    }
 }
