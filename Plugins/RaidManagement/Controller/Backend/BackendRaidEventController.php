@@ -17,7 +17,18 @@ class BackendRaidEventController extends BaseCrudController {
 
     protected $modelProperties = [
         [
-
+            'name'  => 'id',
+            'type'  => CrudDataTypes::INT,
+            'label' => ['key' => 'id', 'default' => 'Id'],
+            'crud'  => [
+                'index'  => 'readonly',
+                'view'   => 'readonly',
+                'create' => 'readonly',
+                'update' => 'readonly',
+                'delete' => 'readonly',
+            ]
+        ],
+        [
             'name'  => 'title',
             'type'  => CrudDataTypes::STRING,
             'label' => ['key' => 'raid_event_title', 'default' => 'Title'],
