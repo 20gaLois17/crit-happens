@@ -96,6 +96,24 @@ class BackendFrontendUserManagementController extends BaseCrudController {
                 'delete' => 'readonly',
             ],
         ],
+        [
+            'name'  => 'coreRaider',
+            'type'  => CrudDataTypes::BOOL,
+            'label' => [
+                'key'     => 'core_raider',
+                'default' => [
+                    'en' => 'Core Raider',
+                    'de' => 'Stamm-Raider',
+                ],
+            ],
+            'crud'  => [
+                'index'  => 'editable',
+                'view'   => 'readonly',
+                'create' => 'readonly',
+                'update' => 'editable',
+                'delete' => 'readonly',
+            ],
+        ],
     ];
     /**
      * @var array $crudActions Keys of 'add|edit|delete'

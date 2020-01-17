@@ -101,7 +101,7 @@ class User extends BaseUser {
       return $this;
     }
 
-    public function isCoreRaider() : ?boolean {
+    public function isCoreRaider() : ?bool {
       return $this->coreRaider;
     }
 
