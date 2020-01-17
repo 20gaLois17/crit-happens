@@ -67,10 +67,10 @@ class Bootstrap extends AbstractBootstrap {
             'parent'   => 'backend_raid_management'
         ]);
         $backendNavigationService->add([
-            'name'     => 'backend_raids',
+            'name'     => 'backend_raidevent',
             'order'    => 0,
             'icon'     => 'fa fa-gears',
-            'path'     => 'backend_raids',
+            'path'     => 'backend_raidevent_controller',
             'position' => 'sidebar',
             'parent'   => 'backend_raid_management'
         ]);
