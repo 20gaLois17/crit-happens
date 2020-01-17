@@ -95,7 +95,7 @@ class User extends BaseUser {
      * @param boolean $coreRaider
      * @return User
      */
-    public function setCoreRaider(boolean $coreRaider) {
+    public function setCoreRaider(bool $coreRaider) {
       $this->coreRaider = $coreRaider;
 
       return $this;
