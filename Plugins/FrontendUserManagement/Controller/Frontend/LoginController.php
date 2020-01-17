@@ -177,7 +177,6 @@ class LoginController extends AbstractController {
             $uri = $router->pathFor('frontend_account_dashboard');
         }
         Oforge()->View()->Flash()->addMessage('success', I18N::translate('login_success', 'You have successfully logged in!'));
-        Oforge()->View()->Flash()->addMessage('info', I18N::translate('asfasf', 'Hinweis: Es wurden unter \'DKP\' Informationen zum DKP-System hinzugefügt.'));
 
         // TODO: set cookie consent in local storage
         Oforge()->View()->assign(['cookie_consent' => true]);
