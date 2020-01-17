@@ -135,7 +135,8 @@ class RaidManagementService extends AbstractDatabaseAccess {
             $currentDkp = $raidMember->getDkp();
             $raidMember->setDkp($currentDkp + $amount);
             $em->update($raidMember);
-            $em->remove($raidMemberEntity);
+            //$em->remove($raidMemberEntity);
         }
+        print("dkp has been granted \n");
     }
 }

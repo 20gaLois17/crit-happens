@@ -29,9 +29,16 @@ class User extends BaseUser {
      */
     private $dkp;
 
+    /**
+     * @var bool $coreRaider
+     * @ORM\Column(name="core_raider", type="boolean", nullable=true)
+     */
+    private $coreRaider;
+
     public function __construct() {
         parent::__construct();
         $this->dkp = 0;
+        $this->core_raider = false;
     }
     /** @ORM\PrePersist */
     public function updatedGuid() : void {
@@ -84,4 +91,18 @@ class User extends BaseUser {
     public function getDkp() : ?int {
         return $this->dkp;
     }
+    /**
+     * @param boolean $coreRaider
+     * @return User
+     */
+    public function setCoreRaider(boolean $coreRaider) {
+      $this->coreRaider = $coreRaider;
+
+      return $this;
+    }
+
+    public function isCoreRaider() : ?boolean {
+      return $this->coreRaider;
+    }
+
 }
