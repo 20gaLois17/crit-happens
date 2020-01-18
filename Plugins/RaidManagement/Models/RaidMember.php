@@ -137,4 +137,21 @@ class RaidMember extends AbstractModel {
         return $this->created;
     }
 
+    /**
+     * @param $memberState
+     *
+     * @return RaidMember
+     */
+    public function setMemberState(int $memberState) {
+      $this->memberState = $memberState;
+
+      return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMemberState() : int {
+      return $this->memberState;
+    }
 }
