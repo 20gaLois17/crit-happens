@@ -46,9 +46,18 @@ class RaidMember extends AbstractModel {
 
     /**
      * @var DateTime
-     * @ORM\Column(name="crated_at", type="datetime", nullable=false)
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
     private $created;
+
+    /**
+     * 0 => default value
+     * 1 => member has signed in 24h before raid start
+     * 2 => guarantee participation
+     * @var Integer
+     * @ORM\Column(name="member_state", type="integer", nullable=true)
+     */
+    private $memberState;
 
     /**
      * RaidMember constructor.
@@ -56,7 +65,8 @@ class RaidMember extends AbstractModel {
      * @throws Exception
      */
     public function __construct() {
-        $this->created = new DateTime('now');
+        $this->created     = new DateTime('now');
+        $this->memberState = 0;
     }
 
     /**
