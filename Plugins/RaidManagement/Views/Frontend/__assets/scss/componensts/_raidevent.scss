@@ -18,19 +18,37 @@
                 font-size: 1.8rem;
                 margin-bottom: .4rem;
             }
+
             .title {
                 font-size: 2rem;
                 font-weight: 700;
             }
         }
+
         .button--primary {
             color: $color-secondary;
         }
 
     }
-    .raid__member {
+
+    .raid__members {
         justify-content: space-between;
         flex-wrap: wrap;
+    }
+
+    .member {
+        padding: .25rem;
+    }
+
+    .state-1:after {
+        content: " *";
+    }
+    .state-1:before {
+        content: "* ";
+    }
+
+    .state-2 {
+        background: #2a2438;
     }
 
     .class__container {
@@ -50,6 +68,7 @@
         flex-direction: row;
         padding: 1.2rem 0;
     }
+
     .chosen_roll {
         display: flex;
         flex-direction: row;
@@ -64,12 +83,15 @@
             cursor: pointer;
         }
     }
+
     .dps {
         color: #de1f12;
     }
+
     .tank {
         color: #128cde;
     }
+
     .healer {
         color: #24b017;
     }

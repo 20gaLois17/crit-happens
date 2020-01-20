@@ -25,7 +25,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex flex--row raid__member">
+                            <div class="flex flex--row raid__members">
                                 {% set classes = ['warrior', 'priest', 'druid', 'shaman', 'mage', 'warlock', 'hunter', 'rogue'] %}
                                 {% for class in classes %}
                                     <div class="flex flex--column class__container" style="text-align: center">
@@ -38,11 +38,10 @@
                                         </div>
                                         {% for member in raid_members %}
                                             {% if member.class == class %}
-                                                <div class="{{ member.role }}">{{ member.email }} [{{ member.dkp }}]</div>
+                                                <div class="member state-{{ member.member_state }} {{ member.role }}">{{ member.email }} [{{ member.dkp }}]</div>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
-
                                 {% endfor %}
                             </div>
                         </div>

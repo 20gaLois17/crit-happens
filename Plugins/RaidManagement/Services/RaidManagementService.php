@@ -89,9 +89,10 @@ class RaidManagementService extends AbstractDatabaseAccess {
         $users              = [];
         /** @var RaidMember $raidMemberEntity */
         foreach ($raidMemberEntities as $raidMemberEntity) {
-            $raidMember = $raidMemberEntity->getUser()->toArray(2, ['guid', 'password', 'createdAt', 'updatedAt', 'sidebar_navigation']);
-            $raidMember['role'] = $raidMemberEntity->getRole();
-            $users[] = $raidMember;
+            $raidMember                 = $raidMemberEntity->getUser()->toArray(2, ['guid', 'password', 'createdAt', 'updatedAt', 'sidebar_navigation']);
+            $raidMember['role']         = $raidMemberEntity->getRole();
+            $raidMember['member_state'] = $raidMemberEntity->getMemberState();
+            $users[]                    = $raidMember;
         }
 
         return $users;
@@ -104,7 +105,7 @@ class RaidManagementService extends AbstractDatabaseAccess {
      * @throws ORMException
      */
     public function countRoles(RaidEvent $raid) {
-        $roles = [];
+        $roles           = [];
         $roles['tank']   = $this->repository('raid_member')->count(['raid' => $raid, 'role' => 'tank']);
         $roles['healer'] = $this->repository('raid_member')->count(['raid' => $raid, 'role' => 'healer']);
         $roles['dps']    = $this->repository('raid_member')->count(['raid' => $raid, 'role' => 'dps']);
@@ -120,17 +121,16 @@ class RaidManagementService extends AbstractDatabaseAccess {
      * @throws OptimisticLockException
      */
     public function grantAttendanceDkp($raid_id, $amount) {
-
-        $em   = Oforge()->DB()->getForgeEntityManager();
+        $em = Oforge()->DB()->getForgeEntityManager();
         /** @var RaidEvent $raid */
         $raid = $em->getRepository(RaidEvent::class)->find($raid_id);
-        if($raid->getDate() > new DateTime('now')) {
+        if ($raid->getDate() > new DateTime('now')) {
             die("this raid is not over yet \n");
         }
         $raidMemberEntities = $em->getRepository(RaidMember::class)->findBy(['raid' => $raid_id]);
 
         /** @var RaidMember $raidMemberEntity */
-        foreach($raidMemberEntities as $raidMemberEntity) {
+        foreach ($raidMemberEntities as $raidMemberEntity) {
             $raidMember = $raidMemberEntity->getUser();
             $currentDkp = $raidMember->getDkp();
             $raidMember->setDkp($currentDkp + $amount);
@@ -138,5 +138,58 @@ class RaidManagementService extends AbstractDatabaseAccess {
             //$em->remove($raidMemberEntity);
         }
         print("dkp has been granted \n");
+    }
+
+    /**
+     * @param string $date
+     *
+     * @throws ORMException
+     * @throws \Exception
+     */
+    public function setMemberState($date = "now") {
+        /** @var RaidEvent $raidEntities */
+        $raidEntities = $this->repository('raid')->findBy(["active" => true]);
+        $raid         = null;
+        $now          = new DateTime($date);
+        if (!empty($raidEntities)) {
+            /** @var RaidEvent $raidEntity */
+            foreach ($raidEntities as $raidEntity) {
+                $diff    = $now->diff($raidEntity->getDate());
+                if ($diff->invert == 1) {
+                    continue;
+                }
+                if ($diff->y == 0 && $diff->m == 0 && $diff->d == 0) {
+                    $raid = $raidEntity;
+                    break;
+                }
+            }
+            if (isset($raid)) {
+                /** @var RaidMember[] $raidMemberEntities */
+                $raidMemberEntities = $this->repository('raid_member')->findBy(["raid" => $raid->getId()]);
+                if (!empty($raidMemberEntities)) {
+                    // count the members
+                    if (count($raidMemberEntities) <= 40) {
+                        /** @var RaidMember $raidMemberEntity */
+                        foreach ($raidMemberEntities as $raidMemberEntity) {
+                            $raidMemberEntity->setMemberState(2);
+                            $this->entityManager()->update($raidMemberEntity, true);
+                        }
+                    } else {
+                        /** @var RaidMember $raidMemberEntity */
+                        foreach ($raidMemberEntities as $raidMemberEntity) {
+                            /** @var User $user */
+                            $user = Oforge()->DB()->getForgeEntityManager()->getRepository(User::class)->find($raidMemberEntity->getUser());
+                            if ($user->isCoreRaider()) {
+                                $raidMemberEntity->setMemberState(2);
+                                $this->entityManager()->update($raidMemberEntity, true);
+                            } else {
+                                $raidMemberEntity->setMemberState(1);
+                                $this->entityManager()->update($raidMemberEntity, true);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
