@@ -143,6 +143,7 @@ class RaidManagementService extends AbstractDatabaseAccess {
     /**
      * @param string $date
      *
+     * @return string
      * @throws ORMException
      * @throws \Exception
      */
@@ -191,5 +192,6 @@ class RaidManagementService extends AbstractDatabaseAccess {
                 }
             }
         }
+        return "SetMemberState Method ran successfully \n";
     }
 }
