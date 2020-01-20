@@ -37,7 +37,17 @@
                                              style="background-image:url('{{ icon_media }}'); background-size: cover">
                                         </div>
                                         {% for member in raid_members %}
-                                            {% if member.class == class %}
+                                            {% if member.class == class and member.role == "tank" %}
+                                                <div class="member state-{{ member.member_state }} {{ member.role }}">{{ member.email }} [{{ member.dkp }}]</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% for member in raid_members %}
+                                            {% if member.class == class and member.role == "healer" %}
+                                                <div class="member state-{{ member.member_state }} {{ member.role }}">{{ member.email }} [{{ member.dkp }}]</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% for member in raid_members %}
+                                            {% if member.class == class and member.role == "dps" %}
                                                 <div class="member state-{{ member.member_state }} {{ member.role }}">{{ member.email }} [{{ member.dkp }}]</div>
                                             {% endif %}
                                         {% endfor %}
