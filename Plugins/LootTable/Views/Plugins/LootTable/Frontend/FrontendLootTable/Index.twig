@@ -1,0 +1,34 @@
+{% extends "@parent/Frontend/Layout.twig" %}
+{% block content %}
+
+    <div class="account content">
+        {% block account %}
+            <div class="panel panel--account flex">
+                {% block account__sidebar %}
+                    {% include 'Plugins/FrontendUserManagement/Frontend/Components/Sidebar.twig' %}
+                {% endblock account__sidebar %}
+
+                {% block account__content %}
+                    <div class="account__content">
+                        <h2 class="account__title">Loot Table</h2>
+                        <div class="loot_table_container">
+                            <div class="panel flex flex-column">
+                                {% for item in loot_table.items %}
+                                    <a href="https://de.classic.wowhead.com/item={{ item.itemNumber }}}">blub</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                {% endblock account__content %}
+            </div>
+        {% endblock account %}
+    </div>
+    <script>var whTooltips = {
+            colorLinks: true,
+            iconizeLinks: true,
+            renameLinks: true,
+            iconSize: 'medium',
+            dropchance: true
+        };</script>
+{% endblock content %}
