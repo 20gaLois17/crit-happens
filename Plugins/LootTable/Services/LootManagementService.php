@@ -25,7 +25,7 @@ class LootManagementService extends AbstractDatabaseAccess {
         $itemEntities = $this->repository('item')->findAll();
         $items = [];
         foreach($itemEntities as $itemEntity) {
-            $items[] = $itemEntity->toArray();
+            $items[$itemEntity->getItemType()][] = $itemEntity->toArray();
         }
         return $items;
     }

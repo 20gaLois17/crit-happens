@@ -14,6 +14,7 @@ use Oforge\Engine\Modules\Core\Exceptions\ConfigElementAlreadyExistException;
 use Oforge\Engine\Modules\Core\Exceptions\ConfigOptionKeyNotExistException;
 use Oforge\Engine\Modules\Core\Exceptions\ParentNotFoundException;
 use Oforge\Engine\Modules\Core\Exceptions\ServiceNotFoundException;
+use Oforge\Engine\Modules\I18n\Helper\I18N;
 
 /**
  * Class LootTable
@@ -37,6 +38,24 @@ class Bootstrap extends AbstractBootstrap {
         \FrontendUserManagement\Bootstrap::class,
     ];
 
+  }
+
+  public function install() {
+      I18N::translate('weapon', [
+          'de' => 'Waffen'
+      ]);
+      I18N::translate('cloth', [
+          'de' => 'Stoff'
+      ]);
+      I18N::translate('leather', [
+          'de' => 'Leder'
+      ]);
+      I18N::translate('mail', [
+          'de' => 'Kette'
+      ]);
+      I18N::translate('plate', [
+          'de' => 'Platte'
+      ]);
   }
 
     /**
