@@ -1,0 +1,34 @@
+.table__type {
+    padding: .5rem;
+    background: #5c5470;
+
+    &:hover {
+        cursor: pointer;
+        color: #352f44;
+    }
+
+    &.active {
+        border-bottom: 2px solid #352f44;
+    }
+}
+
+.table__type ~ .table__type {
+    margin-top: 1rem;
+}
+
+.loot_table {
+    width: 100%;
+
+    tr:nth-child(2n+1) {
+        background: #5c5470;
+    }
+    thead {
+        tr {
+            background: #352f44!important;
+        }
+    }
+
+    &.collapsed {
+        display: none;
+    }
+}

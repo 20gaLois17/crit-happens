@@ -1,23 +1,9 @@
 {# block sidebar__account_user #}
 {% block account_user %}
     <div class="account__user">
-        {% set userimage = profile is defined ? profile.user.detail.image : current_user.detail.image %}
-        {% if label %}
-            <label class="center__label flex flex--row" for="input__profile">
-                <div class="user__picture img-profile"
-                     {% if userimage is defined %}style="background-image: url('{{ media(userimage, 300) }}');"{% endif %}>
-                    <div class="flex flex--row flex--center">
-                        <svg class="icon icon--primary">
-                            <use xlink:href="#camera"></use>
-                        </svg>
-                    </div>
-                </div>
-            </label>
-        {% else %}
             <div class="user__picture img-profile flex"
-                 {% if userimage %}style="background-image: url('{{ media(userimage, 300) }}');"{% endif %}>
+                 style="background-image: url('https://www.crit-happens.eu/var/public/images/7c/c2/horde_0f1a1f_126_b1b7b0_03_999f95.png');">
             </div>
-        {% endif %}
         <div class="user-info">
             {% if current_user.detail %}
                 <h2 class="user-info__name">
@@ -31,3 +17,4 @@
         </div>
     </div>
 {% endblock account_user %}
+    

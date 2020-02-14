@@ -1,0 +1,19 @@
+<h2 class="table__type" data-collapse="" data-collapse-target=".{{ type }}" >{{ i18n(type) }}</h2>
+<table class="loot_table {{ type }} collapsed">
+
+    <tbody>
+    {% for item in loot_table.items[ type ] %}
+        <tr>
+            <td>
+                <a href="https://de.classic.wowhead.com//item={{ item.itemNumber }}"></a>
+            </td>
+            <td>
+                {{ item.itemType }}
+            </td>
+            <td>
+                button
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
