@@ -18,15 +18,13 @@
             init: function () {
                 const triggers = document.querySelectorAll('[data-collapse]');
                 // check if this is specified viewport
-                triggers.forEach(function (trigger){
+                triggers.forEach(function (trigger) {
                     let clientWidth = document.documentElement.clientWidth;
                     let triggerWidth = parseInt(trigger.dataset.collapse);
-                    if (Number.isNaN(triggerWidth) || clientWidth < triggerWidth ) {
+                    if (Number.isNaN(triggerWidth) || clientWidth < triggerWidth) {
                         trigger.addEventListener('click', function () {
                             if (this.hasAttribute('data-collapse-target')) {
-                                triggers.forEach(function (trigger) {
-                                    trigger.classList.toggle('active');
-                                });
+                                trigger.classList.toggle('active');
                                 let targets = document.querySelectorAll(trigger.dataset.collapseTarget);
                                 targets.forEach(function (target) {
                                     target.classList.toggle('collapsed');
