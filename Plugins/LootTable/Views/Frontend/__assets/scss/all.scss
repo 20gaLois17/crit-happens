@@ -1,26 +1,37 @@
 .table__type {
+    text-align: center;
     padding: .5rem;
+    border: 2px solid #2a2438;
     background: #5c5470;
 
     &:hover {
+        border: 2px solid white;
         cursor: pointer;
-        color: #352f44;
     }
 
     &.active {
-        border-bottom: 2px solid #352f44;
+        border: 2px solid white;
     }
 }
-
-.table__type ~ .table__type {
-    margin-top: 1rem;
+.loot_table_container {
+    margin-bottom: 2rem;
 }
 
 .loot_table {
+    h3 {
+        margin-bottom: 1rem;
+    }
     width: 100%;
+    tr {
+        background: #313131;
+    }
+
+    tr:first-child {
+        border-top: 4px solid #352f44;
+    }
 
     tr:nth-child(2n+1) {
-        background: #5c5470;
+        background: #1A1A1A;
     }
     thead {
         tr {
@@ -30,5 +41,14 @@
 
     &.collapsed {
         display: none;
+    }
+    td.item {
+        width: 80%;
+    }
+    button {
+        background: 0;
+        &:hover {
+            cursor: pointer;
+        }
     }
 }

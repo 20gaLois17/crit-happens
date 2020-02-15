@@ -26,7 +26,6 @@ class Bootstrap extends AbstractBootstrap {
     $this->models = [
         LootItem::class,
         LootPreference::class,
-
     ];
     $this->endpoints = [
         FrontendLootTableController::class,
@@ -37,12 +36,12 @@ class Bootstrap extends AbstractBootstrap {
     $this->dependencies = [
         \FrontendUserManagement\Bootstrap::class,
     ];
-
   }
 
   public function install() {
+      // Item Types
       I18N::translate('weapon', [
-          'de' => 'Waffen'
+          'de' => 'Waffen / Schilde / Offhand'
       ]);
       I18N::translate('cloth', [
           'de' => 'Stoff'
@@ -55,6 +54,16 @@ class Bootstrap extends AbstractBootstrap {
       ]);
       I18N::translate('plate', [
           'de' => 'Platte'
+      ]);
+      I18N::translate('other', [
+          'de' => 'Schmuck / Umhänge'
+      ]);
+      // Raid Types
+      I18N::translate('mc', [
+          'de' => 'Molten Core'
+      ]);
+      I18N::translate('bwl', [
+          'de' => 'Black Wing Lair'
       ]);
   }
 

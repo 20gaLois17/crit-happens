@@ -9,33 +9,40 @@
                 {% endblock account__sidebar %}
 
                 {% block account__content %}
+                    {% set raids = ["mc", "bwl"] %}
                     <div class="account__content">
                         <h2 class="account__title">Loot Table</h2>
-                        <div class="loot_table_container">
-                            <!-- weapons -->
-                            {% include 'Plugins/LootTable/Components/LootTable.twig' with {type: "weapon"} %}
-                            <!-- cloth -->
-                            {% include 'Plugins/LootTable/Components/LootTable.twig' with {type: "cloth"} %}
-                            <!-- leather -->
-                            {% include 'Plugins/LootTable/Components/LootTable.twig' with {type: "leather"} %}
-                            <!-- mail -->
-                            {% include 'Plugins/LootTable/Components/LootTable.twig' with {type: "mail"} %}
-                            <!-- plate -->
-                            {% include 'Plugins/LootTable/Components/LootTable.twig' with {type: "plate"} %}
-                            <!-- other -->
-                            {% include 'Plugins/LootTable/Components/LootTable.twig' with {type: "other"} %}
-                        </div>
+                        {% for raid in raids %}
+                            <h3>{{ i18n(raid) }}</h3>
+                            <div class="loot_table_container">
+                                <!-- weapons -->
+                                {% include 'Plugins/LootTable/Components/LootTable.twig' with {type: "weapon", raid: raid} %}
+                                <!-- cloth -->
+                                {% include 'Plugins/LootTable/Components/LootTable.twig' with {type: "cloth", raid: raid} %}
+                                <!-- leather -->
+                                {% include 'Plugins/LootTable/Components/LootTable.twig' with {type: "leather", raid: raid} %}
+                                <!-- mail -->
+                                {% include 'Plugins/LootTable/Components/LootTable.twig' with {type: "mail", raid: raid} %}
+                                <!-- plate -->
+                                {% include 'Plugins/LootTable/Components/LootTable.twig' with {type: "plate", raid: raid} %}
+                                <!-- other -->
+                                {% include 'Plugins/LootTable/Components/LootTable.twig' with {type: "other", raid: raid} %}
+                            </div>
+                        {% endfor %}
                     </div>
 
                 {% endblock account__content %}
             </div>
         {% endblock account %}
     </div>
-    <script>var whTooltips = {
+    <script>
+        var whTooltips = {
             colorLinks: true,
             iconizeLinks: true,
             renameLinks: true,
             iconSize: 'medium',
             dropchance: true,
-        };</script>
+        };
+    </script>
+
 {% endblock content %}
