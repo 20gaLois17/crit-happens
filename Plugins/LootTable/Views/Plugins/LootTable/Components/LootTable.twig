@@ -11,18 +11,18 @@
                     <input type="hidden" name="itemId" value="{{ item.id }}">
 
                     {% if item.id in loot_preferences_users[current_user.id] %}
-                        <button type="submit" data-tippy-content="Passe">
+                        <button class="is-need" type="submit" data-tippy-content="<strong>Auswahl zurücksetzen</strong>">
                             <icon>
                                 <svg class="icon icon--primary">
-                                    <use xlink:href="#thumbs_down"></use>
+                                    <use xlink:href="#check"></use>
                                 </svg>
                             </icon>
                         </button>
                     {% else %}
-                        <button type="submit" data-tippy-content="NEED!">
+                        <button type="submit" data-tippy-content="<strong>NEEEEED!</strong>">
                             <icon>
                                 <svg class="icon icon--primary">
-                                    <use xlink:href="#thumbs_up"></use>
+                                    <use xlink:href="#heart"></use>
                                 </svg>
                             </icon>
                         </button>
@@ -34,7 +34,7 @@
                     data-tippy-content="{% for user in loot_preferences_items[item.id] %}<span><strong>{{ user }}</strong></span><br>{% endfor %}">
                     <icon>
                         <svg class="icon icon--primary">
-                            <use xlink:href="#heart"></use>
+                            <use xlink:href="#insertion"></use>
                         </svg>
                     </icon>
                 </button>
