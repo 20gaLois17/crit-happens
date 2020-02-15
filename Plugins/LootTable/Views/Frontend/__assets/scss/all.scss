@@ -13,9 +13,14 @@
         border: 2px solid white;
     }
 }
-
+.loot_table_container {
+    margin-bottom: 2rem;
+}
 
 .loot_table {
+    h3 {
+        margin-bottom: 1rem;
+    }
     width: 100%;
     tr {
         background: #313131;
@@ -39,5 +44,11 @@
     }
     td.item {
         width: 80%;
+    }
+    button {
+        background: 0;
+        &:hover {
+            cursor: pointer;
+        }
     }
 }

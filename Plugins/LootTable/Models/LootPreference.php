@@ -37,5 +37,68 @@ class LootPreference extends AbstractModel {
      * @var
      * @ORM\Column(name="demand", type="integer", nullable=false)
      */
-  private $demand;
+  private $demand = 1;
+
+    /**
+     * @return int
+     */
+    public function getId() : int {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser() {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     *
+     * @return LootPreference
+     */
+    public function setUser($user) {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getItem() {
+        return $this->item;
+    }
+
+    /**
+     * @param mixed $item
+     *
+     * @return LootPreference
+     */
+    public function setItem($item) {
+        $this->item = $item;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDemand() {
+        return $this->demand;
+    }
+
+    /**
+     * @param mixed $demand
+     *
+     * @return LootPreference
+     */
+    public function setDemand($demand) {
+        $this->demand = $demand;
+
+        return $this;
+    }
+
+
 }

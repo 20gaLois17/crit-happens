@@ -1,4 +1,4 @@
-<h3 class="table__type" data-collapse="" data-collapse-target=".{{ raid }}--{{ type }}" >{{ i18n(type) }}</h3>
+<h3 class="table__type" data-collapse="" data-collapse-target=".{{ raid }}--{{ type }}">{{ i18n(type) }}</h3>
 <table class="loot_table {{ raid }}--{{ type }} collapsed">
     <tbody>
     {% for item in loot_table[raid][type] %}
@@ -7,10 +7,37 @@
                 <a href="https://de.wowhead.com/item={{ item.itemNumber }}"></a>
             </td>
             <td>
-                need?
+                <form method="post" action="{{ url('frontend_account_loottable_preferences') }}">
+                    <input type="hidden" name="itemId" value="{{ item.id }}">
+
+                    {% if item.id in loot_preferences_users[current_user.id] %}
+                        <button type="submit" data-tippy-content="Passe">
+                            <icon>
+                                <svg class="icon icon--primary">
+                                    <use xlink:href="#thumbs_down"></use>
+                                </svg>
+                            </icon>
+                        </button>
+                    {% else %}
+                        <button type="submit" data-tippy-content="NEED!">
+                            <icon>
+                                <svg class="icon icon--primary">
+                                    <use xlink:href="#thumbs_up"></use>
+                                </svg>
+                            </icon>
+                        </button>
+                    {% endif %}
+                </form>
             </td>
             <td>
-                button
+                <button
+                    data-tippy-content="{% for user in loot_preferences_items[item.id] %}<span><strong>{{ user }}</strong></span><br>{% endfor %}">
+                    <icon>
+                        <svg class="icon icon--primary">
+                            <use xlink:href="#heart"></use>
+                        </svg>
+                    </icon>
+                </button>
             </td>
         </tr>
     {% endfor %}
