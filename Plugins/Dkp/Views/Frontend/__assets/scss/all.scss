@@ -1,0 +1,67 @@
+.color-druid {
+    color: $color-druid
+}
+
+.color-hunter {
+    color: $color-hunter
+}
+
+.color-mage {
+    color: $color-mage
+}
+
+.color-priest {
+    color: $color-priest
+}
+
+.color-shaman {
+    color: $color-shaman
+}
+
+.color-druid {
+    color: $color-druid
+}
+
+.color-warlock {
+    color: $color-warlock
+}
+
+.color-warrior {
+    color: $color-warrior
+}
+
+.dkp_table {
+    border: 2px solid #5c5470;
+    margin-top: 2rem;
+    width: 100%;
+    th, td {
+        padding: 2px 5px;
+        border: 1px solid #5c5470;
+    }
+
+    thead {
+        height: 2rem;
+        font-weight: 600;
+    }
+    tbody {
+        tr {
+            background-color: #313131;
+        }
+        tr:nth-child(2n-1) {
+            background-color: #1A1A1A;
+        }
+
+    }
+
+}
+
+@media screen and (min-width: $screen-medium) {
+    .dkp_table {
+        width: 50%;
+    }
+}
+@media screen and (min-width: $screen-large) {
+    .dkp_table {
+        width: 70%;
+    }
+}

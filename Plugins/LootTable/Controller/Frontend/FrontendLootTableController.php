@@ -39,7 +39,7 @@ class FrontendLootTableController extends SecureFrontendController {
         $userId = Oforge()->View()->get('current_user.id');
 
         if(!$this->isAllowed($userId)) {
-            Oforge()->View()->Flash()->addMessage('warning', "Diese Feature wird bald freigeschaltet, Info folgt im Discord.");
+            Oforge()->View()->Flash()->addMessage('warning', "Dieses Feature wird bald freigeschaltet, Info folgt im Discord.");
             $router = Oforge()->App()->getContainer()->get('router');
             $uri    = $router->pathFor('frontend_account_dashboard');
             return $response->withRedirect($uri);
@@ -69,7 +69,7 @@ class FrontendLootTableController extends SecureFrontendController {
         $userId     = Oforge()->View()->get('current_user.id');
 
         if(!$this->isAllowed($userId)) {
-            Oforge()->View()->Flash()->addMessage('warning', "Diese Feature wird bald freigeschaltet, Info folgt im Discord.");
+            Oforge()->View()->Flash()->addMessage('warning', "Dieses Feature wird bald freigeschaltet, Info folgt im Discord.");
             $router = Oforge()->App()->getContainer()->get('router');
             $uri    = $router->pathFor('frontend_account_dashboard');
             return $response->withRedirect($uri);
