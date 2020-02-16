@@ -81,7 +81,7 @@ class Bootstrap extends AbstractBootstrap {
       $accountNavigationService->put([
           'name'     => 'frontend_account_loottable',
           'order'    => 3,
-          'icon'     => 'profile',
+          'icon'     => 'insertions',
           'path'     => 'frontend_account_loottable',
           'position' => 'sidebar',
       ]);

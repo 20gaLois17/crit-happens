@@ -3,6 +3,7 @@
 namespace Dkp\Controller\Frontend;
 
 use FrontendUserManagement\Abstracts\SecureFrontendController;
+use FrontendUserManagement\Models\User;
 use Oforge\Engine\Modules\Core\Annotation\Endpoint\EndpointClass;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -14,7 +15,13 @@ use Slim\Http\Response;
  */
 class FrontendDkpController extends SecureFrontendController {
     public function indexAction(Request $request, Response $response) {
-
+        /** @var User[] $userEntities */
+        $userEntities = Oforge()->DB()->getForgeEntityManager()->getRepository(User::class)->findBy(['active' => 1],["class" => "DESC", "dkp" => "DESC"]);
+        $userDkp      = [];
+        foreach($userEntities as $entity) {
+            $userDkp[] = $entity->toArray(1,['id','password', 'guid', 'createdAt', 'updatedAt', 'active', 'coreRaider']);
+        }
+        Oforge()->View()->assign(['user_dkp' => $userDkp]);
     }
 
     public function initPermissions() {

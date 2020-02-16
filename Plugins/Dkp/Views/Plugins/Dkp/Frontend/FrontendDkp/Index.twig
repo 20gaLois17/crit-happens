@@ -11,8 +11,37 @@
                 {% block account__content %}
                     <div class="account__content">
                         <h2 class="account__title">Deine DKP: {{ current_user.dkp }}</h2>
-                        <h2 class="account__title">Infos zum DKP-System</h2>
+                        <p>Für Details zum DKP-System schaut einfach in unserem Gilden-Discord unter #regelwerk
+                            vorbei.
+                        </p>
+                        {% block dkp_table %}
+                        <table class="dkp_table">
+                            <thead>
+                            <tr>
+                                <th style="width: 80%">
+                                    Spieler
+                                </th>
+                                <th>
+                                    DKP
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in user_dkp %}
+                                <tr>
+                                    <td class="color-{{ user.class }}">
+                                        {{ user.email }}
+                                    </td>
+                                    <td>
+                                        {{ user.dkp }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% endblock dkp_table %}
                     </div>
+
                 {% endblock account__content %}
             </div>
         {% endblock account %}
