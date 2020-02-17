@@ -33,7 +33,7 @@
             <td class="loot-player">
                 <button
                     data-tippy-content="{% for user in loot_preferences_items[item.id] %}
-                    <h3 class='color-{{ user.class }}'><strong>{{ user.name }}</strong></h3><br>{% endfor %}">
+                    <h3 class='color-{{ user.class }}'>{{ user.name }}</h3>{% endfor %}">
                     <icon>
                         <svg class="icon icon--primary">
                             <use xlink:href="#insertion"></use>
