@@ -3,10 +3,10 @@
     <tbody>
     {% for item in loot_table[raid][type] %}
         <tr>
-            <td class="item">
+            <td class="loot-item">
                 <a href="https://de.classic.wowhead.com/item={{ item.itemNumber }}"></a>
             </td>
-            <td>
+            <td class="loot-need">
                 <form method="post" action="{{ url('frontend_account_loottable_preferences') }}">
                     <input type="hidden" name="itemId" value="{{ item.id }}">
 
@@ -29,7 +29,7 @@
                     {% endif %}
                 </form>
             </td>
-            <td>
+            <td class="loot-player">
                 <button
                     data-tippy-content="{% for user in loot_preferences_items[item.id] %}<span><strong>{{ user }}</strong></span><br>{% endfor %}">
                     <icon>

@@ -52,7 +52,7 @@
     }
 
     .class__container {
-        min-width: 25%;
+        width: 50%;
         margin-bottom: 2rem;
     }
 
@@ -100,6 +100,16 @@
         .icon {
             border: 1px solid $color-primary;
             transform: scale(1.4);
+        }
+    }
+    @media screen and (min-width: $screen-medium) {
+        .class__container {
+            width: 33%;
+        }
+    }
+    @media screen and (min-width: $content-max) {
+        .class__container {
+            width: 25%;
         }
     }
 }

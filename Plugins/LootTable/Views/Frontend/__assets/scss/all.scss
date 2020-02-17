@@ -18,6 +18,10 @@
 }
 
 .loot_table {
+    th, td {
+        padding: 2px 5px;
+        border: 1px solid #5c5470;
+    }
     h3 {
         margin-bottom: 1rem;
     }
@@ -42,8 +46,12 @@
     &.collapsed {
         display: none;
     }
-    td.item {
-        width: 85%;
+    td.loot-item {
+        width: 90%;
+    }
+    td.loot-need, td.loot-player {
+        width: 5%;
+        text-align: center;
     }
     button {
         background: 0;

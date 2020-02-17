@@ -49,13 +49,15 @@
     tbody {
         tr {
             background-color: #313131;
+            &:hover {
+                cursor: pointer;
+                font-weight: 600;
+            }
         }
         tr:nth-child(2n-1) {
             background-color: #1A1A1A;
         }
-
     }
-
 }
 
 @media screen and (min-width: $screen-medium) {
