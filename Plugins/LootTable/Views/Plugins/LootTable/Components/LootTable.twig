@@ -43,13 +43,13 @@
             </td>
             <td class="loot-player">
                 <button
-                    data-tippy-content="<p style='text-decoration: underline'>großer Need:</p>{% for user in loot_preferences_items[item.id] %}
-                    {% if user.demand == 2 %}
+                    data-tippy-content="<p style='text-decoration: underline'>normaler Need:</p>{% for user in loot_preferences_items[item.id] %}
+                    {% if user.demand == 1 %}
                     <h3 class='color-{{ user.class }}'>{{ user.name }}</h3>{% endif %}{% endfor %}
 
-                    <p style='text-decoration: underline'>normaler Need:</p>
+                    <p style='text-decoration: underline'>großer Need:</p>
                     {% for user in loot_preferences_items[item.id] %}
-                        {% if user.demand == 1 %}
+                        {% if user.demand == 2 %}
                     <h3 class='color-{{ user.class }}'>{{ user.name }}</h3>{% endif %}{% endfor %}">
                     <icon>
                         <svg class="icon icon--primary">
