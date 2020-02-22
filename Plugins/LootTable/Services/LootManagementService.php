@@ -2,6 +2,7 @@
 
 namespace LootTable\Services;
 
+use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use FrontendUserManagement\Models\User;
 use LootTable\Models\LootItem;
@@ -54,7 +55,7 @@ class LootManagementService extends AbstractDatabaseAccess {
         $preferenceEntities = $this->repository('preference')->findAll();
         $preferences = [];
         foreach($preferenceEntities as $entity) {
-            $preferences[$entity->getItem()->getId()][] = ["name" => $entity->getUser()->getEmail(), "class" => $entity->getUser()->getClass()];
+            $preferences[$entity->getItem()->getId()][] = ["name" => $entity->getUser()->getEmail(), "class" => $entity->getUser()->getClass(), "demand" => $entity->getDemand()];
         }
         return $preferences;
     }
@@ -62,11 +63,13 @@ class LootManagementService extends AbstractDatabaseAccess {
     /**
      * @param int $userId
      * @param int $itemId
+     * @param int $demand
      *
      * @return bool
      * @throws ORMException
+     * @throws OptimisticLockException
      */
-    public function togglePreference(int $userId, int $itemId) {
+    public function togglePreference(int $userId, int $itemId, int $demand) {
         $user = $this->repository('user')->find($userId);
         $item = $this->repository('item')->find($itemId);
 
@@ -79,7 +82,7 @@ class LootManagementService extends AbstractDatabaseAccess {
 
         } else {
             $lootPreference = new LootPreference();
-            $lootPreference->setItem($item)->setUser($user);
+            $lootPreference->setItem($item)->setUser($user)->setDemand($demand);
             $this->entityManager()->create($lootPreference);
         }
         return true;

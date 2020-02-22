@@ -66,6 +66,7 @@ class FrontendLootTableController extends SecureFrontendController {
      */
     public function preferencesAction(Request $request, Response $response) {
         $itemNumber = $request->getParam('itemId');
+        $demand = $request->getParam('demand');
         $userId     = Oforge()->View()->get('current_user.id');
 
         if(!$this->isAllowed($userId)) {
@@ -80,7 +81,7 @@ class FrontendLootTableController extends SecureFrontendController {
         }
         /** @var LootManagementService $service */
         $service = Oforge()->Services()->get('loot.management');
-        if($service->togglePreference($userId, $itemNumber)) {
+        if($service->togglePreference($userId, $itemNumber, $demand)) {
             Oforge()->View()->Flash()->addMessage('success',I18N::translate('preference_update_success', [
                 'de' => 'Loot Bedarf wurde erfolgreich angepasst.'
             ]));
