@@ -14,7 +14,7 @@
                     {% if item.id in loot_preferences_users[current_user.id] %}
 
                     {% else %}
-                        <button type="submit" data-tippy-content="<strong>normaler Need</strong>" style="height: 3.5rem; width: 3.5rem; background-image: url('{{ media(content('loot_table_icon_1').url) }}');background-size: contain">
+                        <button type="submit" data-tippy-content="<strong>Need</strong>" style="height: 3.5rem; width: 3.5rem; background-image: url('{{ media(content('loot_table_icon_1').url) }}');background-size: contain">
 
                         </button>
                     {% endif %}
@@ -35,7 +35,7 @@
                             </icon>
                         </button>
                     {% else %}
-                        <button type="submit" data-tippy-content="<strong>großer Need</strong>" style="height: 3.5rem; width: 3.5rem; background-image: url('{{ media(content('loot_table_icon_2').url) }}'); background-size: contain">
+                        <button type="submit" data-tippy-content="<strong>BiS</strong>" style="height: 3.5rem; width: 3.5rem; background-image: url('{{ media(content('loot_table_icon_2').url) }}'); background-size: contain">
 
                         </button>
                     {% endif %}
@@ -43,11 +43,11 @@
             </td>
             <td class="loot-player">
                 <button
-                    data-tippy-content="<p style='text-decoration: underline'>normaler Need:</p>{% for user in loot_preferences_items[item.id] %}
+                    data-tippy-content="<p style='text-decoration: underline'>Need:</p>{% for user in loot_preferences_items[item.id] %}
                     {% if user.demand == 1 %}
                     <h3 class='color-{{ user.class }}'>{{ user.name }}</h3>{% endif %}{% endfor %}
 
-                    <p style='text-decoration: underline'>großer Need:</p>
+                    <p style='text-decoration: underline'>BiS:</p>
                     {% for user in loot_preferences_items[item.id] %}
                         {% if user.demand == 2 %}
                     <h3 class='color-{{ user.class }}'>{{ user.name }}</h3>{% endif %}{% endfor %}">
