@@ -42,7 +42,7 @@
                 </form>
             </td>
             <td class="loot-player">
-                <button
+                <button style="position: relative"
                     data-tippy-content="<p style='text-decoration: underline'>Need:</p>{% for user in loot_preferences_items[item.id] %}
                     {% if user.demand == 1 %}
                     <h3 class='color-{{ user.class }}'>{{ user.name }}</h3>{% endif %}{% endfor %}
@@ -56,6 +56,7 @@
                             <use xlink:href="#insertion"></use>
                         </svg>
                     </icon>
+                    <span style="color: lime; position: absolute; right: -2px; bottom: -6px">{{ loot_preferences_items[item.id]|length }}</span>
                 </button>
             </td>
         </tr>
