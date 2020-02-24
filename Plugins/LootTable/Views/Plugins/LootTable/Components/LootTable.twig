@@ -7,8 +7,23 @@
                 <a href="https://de.classic.wowhead.com/item={{ item.itemNumber }}"></a>
             </td>
             <td class="loot-need">
-                <form method="post" action="{{ url('frontend_account_loottable_preferences') }}">
+                <form method="post" action="{{ url('frontend_account_loottable_preferences') }}" style="text-align: center">
                     <input type="hidden" name="itemId" value="{{ item.id }}">
+                    <input type="hidden" name="demand" value="1">
+
+                    {% if item.id in loot_preferences_users[current_user.id] %}
+
+                    {% else %}
+                        <button type="submit" data-tippy-content="<strong>Need</strong>" style="height: 3.5rem; width: 3.5rem; background-image: url('{{ media(content('loot_table_icon_1').url) }}');background-size: contain">
+
+                        </button>
+                    {% endif %}
+                </form>
+            </td>
+            <td>
+                <form method="post" action="{{ url('frontend_account_loottable_preferences') }}" style="text-align: center">
+                    <input type="hidden" name="itemId" value="{{ item.id }}">
+                    <input type="hidden" name="demand" value="2">
 
                     {% if item.id in loot_preferences_users[current_user.id] %}
                         <button class="is-need" type="submit"
@@ -20,25 +35,28 @@
                             </icon>
                         </button>
                     {% else %}
-                        <button type="submit" data-tippy-content="<strong>NEEEEED!</strong>">
-                            <icon>
-                                <svg class="icon icon--primary">
-                                    <use xlink:href="#heart"></use>
-                                </svg>
-                            </icon>
+                        <button type="submit" data-tippy-content="<strong>BiS</strong>" style="height: 3.5rem; width: 3.5rem; background-image: url('{{ media(content('loot_table_icon_2').url) }}'); background-size: contain">
+
                         </button>
                     {% endif %}
                 </form>
             </td>
             <td class="loot-player">
-                <button
-                    data-tippy-content="{% for user in loot_preferences_items[item.id] %}
-                    <h3 class='color-{{ user.class }}'>{{ user.name }}</h3>{% endfor %}">
+                <button style="position: relative"
+                    data-tippy-content="<p style='text-decoration: underline'>Need:</p>{% for user in loot_preferences_items[item.id] %}
+                    {% if user.demand == 1 %}
+                    <h3 class='color-{{ user.class }}'>{{ user.name }}</h3>{% endif %}{% endfor %}
+
+                    <p style='text-decoration: underline'>BiS:</p>
+                    {% for user in loot_preferences_items[item.id] %}
+                        {% if user.demand == 2 %}
+                    <h3 class='color-{{ user.class }}'>{{ user.name }}</h3>{% endif %}{% endfor %}">
                     <icon>
                         <svg class="icon icon--primary">
                             <use xlink:href="#insertion"></use>
                         </svg>
                     </icon>
+                    <span style="color: lime; position: absolute; right: -2px; bottom: -6px">{{ loot_preferences_items[item.id]|length }}</span>
                 </button>
             </td>
         </tr>

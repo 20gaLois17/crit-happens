@@ -38,12 +38,12 @@ class FrontendLootTableController extends SecureFrontendController {
     public function indexAction(Request $request, Response $response) {
         $userId = Oforge()->View()->get('current_user.id');
 
-        if(!$this->isAllowed($userId)) {
-            Oforge()->View()->Flash()->addMessage('warning', "Dieses Feature wird bald freigeschaltet, Info folgt im Discord.");
-            $router = Oforge()->App()->getContainer()->get('router');
-            $uri    = $router->pathFor('frontend_account_dashboard');
-            return $response->withRedirect($uri);
-        }
+        // if(!$this->isAllowed($userId)) {
+        //     Oforge()->View()->Flash()->addMessage('warning', "Dieses Feature wird bald freigeschaltet, Info folgt im Discord.");
+        //     $router = Oforge()->App()->getContainer()->get('router');
+        //     $uri    = $router->pathFor('frontend_account_dashboard');
+        //     return $response->withRedirect($uri);
+        // }
 
         /** @var LootManagementService $service */
         $service         = Oforge()->Services()->get('loot.management');
@@ -66,21 +66,22 @@ class FrontendLootTableController extends SecureFrontendController {
      */
     public function preferencesAction(Request $request, Response $response) {
         $itemNumber = $request->getParam('itemId');
+        $demand = $request->getParam('demand');
         $userId     = Oforge()->View()->get('current_user.id');
 
-        if(!$this->isAllowed($userId)) {
-            Oforge()->View()->Flash()->addMessage('warning', "Dieses Feature wird bald freigeschaltet, Info folgt im Discord.");
-            $router = Oforge()->App()->getContainer()->get('router');
-            $uri    = $router->pathFor('frontend_account_dashboard');
-            return $response->withRedirect($uri);
-        }
+        // if(!$this->isAllowed($userId)) {
+        //     Oforge()->View()->Flash()->addMessage('warning', "Dieses Feature wird bald freigeschaltet, Info folgt im Discord.");
+        //     $router = Oforge()->App()->getContainer()->get('router');
+        //     $uri    = $router->pathFor('frontend_account_dashboard');
+        //     return $response->withRedirect($uri);
+        // }
 
         if (!$request->isPost() || !isset($itemNumber) || !isset($userId)) {
             die('Error');
         }
         /** @var LootManagementService $service */
         $service = Oforge()->Services()->get('loot.management');
-        if($service->togglePreference($userId, $itemNumber)) {
+        if($service->togglePreference($userId, $itemNumber, $demand)) {
             Oforge()->View()->Flash()->addMessage('success',I18N::translate('preference_update_success', [
                 'de' => 'Loot Bedarf wurde erfolgreich angepasst.'
             ]));
