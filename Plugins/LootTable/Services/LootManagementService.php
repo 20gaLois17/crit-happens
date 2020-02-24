@@ -37,10 +37,12 @@ class LootManagementService extends AbstractDatabaseAccess {
      */
     public function listPreferencesByUser() {
         /** @var LootPreference[] $preferenceEntities */
-        $preferenceEntities = $this->repository('preference')->findAll();
+        $preferenceEntities = $this->repository('preference')->find();
         $preferences = [];
         foreach($preferenceEntities as $entity) {
+          if ($entity->getUser()->isActive()) {
             $preferences[$entity->getUser()->getid()][] = $entity->getItem()->getId();
+          }
         }
         return $preferences;
     }
