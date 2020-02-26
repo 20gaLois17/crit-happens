@@ -1,5 +1,8 @@
 .logo {
     margin: 0 auto;
+    position: absolute;
+    left: 0;
+    right: 0;
 
     &__img {
         max-height: 120px;
