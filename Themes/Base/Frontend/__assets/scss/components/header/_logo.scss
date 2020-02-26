@@ -1,10 +1,10 @@
 .logo {
-    margin: 0 auto;
-    position: absolute;
-    left: 0;
-    right: 0;
 
     &__img {
+        position: absolute;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
         max-height: 120px;
     }
     &__link {
