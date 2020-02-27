@@ -4,6 +4,9 @@
 
 .header-top {
     height: 10rem;
+    .content {
+      position: relative;
+    }
 }
 
 @import "logo";
