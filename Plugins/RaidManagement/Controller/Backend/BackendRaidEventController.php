@@ -16,7 +16,7 @@ class BackendRaidEventController extends BaseCrudController {
 
     protected $model = RaidEvent::class;
 
-    protected $indexFilter = [
+    protected $indexOrderBy = [
         'date' => CrudGroupByOrder::DESC,
     ];
 
