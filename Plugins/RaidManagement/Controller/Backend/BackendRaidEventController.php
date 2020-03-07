@@ -17,12 +17,7 @@ class BackendRaidEventController extends BaseCrudController {
     protected $model = RaidEvent::class;
 
     protected $indexOrderBy = [
-<<<<<<< HEAD
-      'orderBy' => 'date',
-      'order'   => 'DESC',
-=======
         'date' => CrudGroupByOrder::DESC,
->>>>>>> bb0721f8f17227fbe0a9f6e228bf7db74555e50e
     ];
 
     protected $modelProperties = [
@@ -36,7 +31,7 @@ class BackendRaidEventController extends BaseCrudController {
                 'create' => 'readonly',
                 'update' => 'readonly',
                 'delete' => 'readonly',
-            ]
+            ],
         ],
         [
             'name'  => 'title',
@@ -48,7 +43,7 @@ class BackendRaidEventController extends BaseCrudController {
                 'create' => 'editable',
                 'update' => 'editable',
                 'delete' => 'readonly',
-            ]
+            ],
         ],
         [
             'name'  => 'description',
@@ -60,7 +55,7 @@ class BackendRaidEventController extends BaseCrudController {
                 'create' => 'editable',
                 'update' => 'editable',
                 'delete' => 'readonly',
-            ]
+            ],
         ],
         [
             'name'  => 'date',
@@ -72,7 +67,7 @@ class BackendRaidEventController extends BaseCrudController {
                 'create' => 'off',
                 'update' => 'editable',
                 'delete' => 'readonly',
-            ]
+            ],
         ],
         [
             'name'  => 'deadline',
@@ -84,7 +79,7 @@ class BackendRaidEventController extends BaseCrudController {
                 'create' => 'off',
                 'update' => 'editable',
                 'delete' => 'readonly',
-            ]
+            ],
         ],
         [
             'name'  => 'active',
@@ -96,7 +91,7 @@ class BackendRaidEventController extends BaseCrudController {
                 'create' => 'editable',
                 'update' => 'editable',
                 'delete' => 'readonly',
-            ]
+            ],
         ],
     ];
 
