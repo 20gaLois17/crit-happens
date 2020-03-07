@@ -22,7 +22,7 @@ class FrontendDkpController extends SecureFrontendController {
             $userDkp[] = $entity->toArray(1,['id','password', 'guid', 'createdAt', 'updatedAt', 'active', 'coreRaider']);
         }
         Oforge()->View()->assign(['user_dkp' => $userDkp]);
-        Oforge()->View()->assign(['last_update' => Oforge()->DB()->getForgeEntityManager()->getRepository(User:class)->findOneBy(['email' => 'Leobs'])->getUpdatedAt()]);
+        //Oforge()->View()->assign(['last_update' => Oforge()->DB()->getForgeEntityManager()->getRepository(User:class)->findOneBy(['email' => 'Leobs'])->getUpdatedAt()]);
     }
 
     public function initPermissions() {
