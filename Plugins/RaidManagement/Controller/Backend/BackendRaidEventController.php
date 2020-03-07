@@ -5,6 +5,7 @@ namespace RaidManagement\Controller\Backend;
 use Oforge\Engine\Modules\Core\Annotation\Endpoint\EndpointClass;
 use Oforge\Engine\Modules\CRUD\Controller\Backend\BaseCrudController;
 use Oforge\Engine\Modules\CRUD\Enum\CrudDataTypes;
+use Oforge\Engine\Modules\CRUD\Enum\CrudGroupByOrder;
 use RaidManagement\Models\RaidEvent;
 
 /**
@@ -16,8 +17,12 @@ class BackendRaidEventController extends BaseCrudController {
     protected $model = RaidEvent::class;
 
     protected $indexOrderBy = [
+<<<<<<< HEAD
       'orderBy' => 'date',
       'order'   => 'DESC',
+=======
+        'date' => CrudGroupByOrder::DESC,
+>>>>>>> bb0721f8f17227fbe0a9f6e228bf7db74555e50e
     ];
 
     protected $modelProperties = [

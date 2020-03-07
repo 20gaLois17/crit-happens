@@ -80,7 +80,7 @@ class BackendRaidMemberController extends BaseCrudController {
     ];
 
     protected $indexOrderBy = [
-        'raid' => CrudGroupByOrder::ASC,
+        'raid' => CrudGroupByOrder::DESC,
     ];
 
     private function listSelectRaid() {
