@@ -13,6 +13,9 @@
                         <h2 class="account__title">Deine DKP: {{ current_user.dkp }}</h2>
                         <p>Für Details zum DKP-System schaut einfach in unserem Gilden-Discord unter #regelwerk
                             vorbei.
+                        </p><br>
+                        <p>
+                            Letztes Update: {{ last_update|date('m.d.Y, h:m') }} Uhr
                         </p>
                         {% block dkp_table %}
                         <table class="dkp_table">
