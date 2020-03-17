@@ -150,7 +150,7 @@ class BaseCrudController extends SecureBackendController {
      *          'entitiesPerPage' => 'entitiesPerPage',
      *      ];
      *
-     * @var array $indexOrderBy
+     * @var array $indexReservedQueryKeys
      */
     protected $indexReservedQueryKeys = [
         'orderBy'         => 'orderBy',
