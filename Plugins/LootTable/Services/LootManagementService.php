@@ -58,7 +58,12 @@ class LootManagementService extends AbstractDatabaseAccess {
         $preferences = [];
         foreach($preferenceEntities as $entity) {
           if ($entity->getUser()->isActive()) {
-            $preferences[$entity->getItem()->getId()][] = ["name" => $entity->getUser()->getEmail(), "class" => $entity->getUser()->getClass(), "demand" => $entity->getDemand()];
+            $preferences[$entity->getItem()->getId()][] = [
+                "name"   => $entity->getUser()->getEmail(),
+                "class"  => $entity->getUser()->getClass(),
+                "demand" => $entity->getDemand(),
+                "dkp"    => $entity->getUser()->getDkp(),
+            ];
           }
         }
         return $preferences;
