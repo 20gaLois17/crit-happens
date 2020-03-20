@@ -43,9 +43,11 @@ class FrontendLootTableController extends SecureFrontendController {
         $items           = $service->listItems();
         $userPreferences = $service->listPreferencesByUser();
         $itemPreferences = $service->listPreferencesByItem();
+        $dkpLookup       = $service->createLookupTable();
         Oforge()->View()->assign(["loot_table" => $items]);
         Oforge()->View()->assign(['loot_preferences_users' => $userPreferences]);
         Oforge()->View()->assign(['loot_preferences_items' => $itemPreferences]);
+        Oforge()->View()->assign(['dkp_lookup' => $dkpLookup]);
     }
 
     /**

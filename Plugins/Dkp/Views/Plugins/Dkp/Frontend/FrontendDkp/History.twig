@@ -1,0 +1,63 @@
+{% extends '@parent/Frontend/Layout.twig' %}
+{% block content %}
+    <div class="account content">
+        {% block account %}
+            <div class="panel panel--account flex">
+                {% block account__sidebar %}
+                    {% include 'Plugins/FrontendUserManagement/Frontend/Components/Sidebar.twig' %}
+                {% endblock account__sidebar %}
+
+                {% block account__content %}
+                    <div class="account__content">
+                        <h2 class="account__title">Deine DKP: {{ user_dkp.total }}</h2>
+
+                        <table class="dkp_table dkp_history">
+                            <thead>
+                            <tr>
+                                <th>
+                                    Datum
+                                </th>
+                                <th>
+                                    Raid
+                                </th>
+                                <th>
+                                    Begründung
+                                </th>
+                                <th>
+                                    Wert
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for entry in dkp_history %}
+                                <tr>
+                                    <td>
+                                        {{ entry.createdAt|date('d.m.Y') }}
+                                    </td>
+                                    <td>
+                                        {% if entry.raid.title is not empty %}
+                                            {{ entry.raid.title }}
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if entry.item is not empty %}
+                                            <!-- Do some cool stuff with power.js -->
+                                        {% else %}
+                                            {{ entry.description }}
+                                        {% endif %}
+                                    </td>
+                                    <td style="color: {% if entry.value > 0 %}lime{% else %}red{% endif %}">
+                                        {{ entry.value }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endblock account__content %}
+            </div>
+        {% endblock account %}
+    </div>
+{% endblock content %}

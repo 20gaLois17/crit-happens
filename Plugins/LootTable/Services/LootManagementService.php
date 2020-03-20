@@ -2,12 +2,15 @@
 
 namespace LootTable\Services;
 
+use Dkp\Services\DkpService;
+use Doctrine\DBAL\Platforms\Keywords\PostgreSQL91Keywords;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use FrontendUserManagement\Models\User;
 use LootTable\Models\LootItem;
 use LootTable\Models\LootPreference;
 use Oforge\Engine\Modules\Core\Abstracts\AbstractDatabaseAccess;
+use Oforge\Engine\Modules\Core\Exceptions\ServiceNotFoundException;
 
 class LootManagementService extends AbstractDatabaseAccess {
     public function __construct() {
@@ -51,8 +54,10 @@ class LootManagementService extends AbstractDatabaseAccess {
     /**
      * @return array
      * @throws ORMException
+     * @throws ServiceNotFoundException
      */
     public function listPreferencesByItem() {
+
         /** @var LootPreference[] $preferenceEntities */
         $preferenceEntities = $this->repository('preference')->findAll();
         $preferences = [];
@@ -62,11 +67,22 @@ class LootManagementService extends AbstractDatabaseAccess {
                 "name"   => $entity->getUser()->getEmail(),
                 "class"  => $entity->getUser()->getClass(),
                 "demand" => $entity->getDemand(),
-                "dkp"    => $entity->getUser()->getDkp(),
             ];
           }
         }
         return $preferences;
+    }
+
+    public function createLookupTable() {
+        /** @var DkpService $dkpService */
+        $dkpService   = Oforge()->Services()->get('dkp');
+        $userEntities = Oforge()->DB()->getForgeEntityManager()->getRepository(User::class)->findBy(['active' => true]);
+        $output = [];
+        /** @var User $userEntity */
+        foreach ($userEntities as $userEntity) {
+            $output[$userEntity->getEmail()] = $dkpService->getUserDkp($userEntity->getId())['total'];
+        }
+        return $output;
     }
 
     /**

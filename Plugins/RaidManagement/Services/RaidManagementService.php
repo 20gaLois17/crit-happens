@@ -3,10 +3,12 @@
 namespace RaidManagement\Services;
 
 use DateTime;
+use Dkp\Services\DkpService;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use FrontendUserManagement\Models\User;
 use Oforge\Engine\Modules\Core\Abstracts\AbstractDatabaseAccess;
+use Oforge\Engine\Modules\Core\Exceptions\ServiceNotFoundException;
 use RaidManagement\Models\RaidEvent;
 use RaidManagement\Models\RaidMember;
 
@@ -83,15 +85,19 @@ class RaidManagementService extends AbstractDatabaseAccess {
      *
      * @return array
      * @throws ORMException
+     * @throws ServiceNotFoundException
      */
     public function listRaidMembers(RaidEvent $raid) {
+        /** @var DkpService $dkpService */
+        $dkpService = Oforge()->Services()->get('dkp');
         $raidMemberEntities = $this->repository('raid_member')->findBy(['raid' => $raid]);
         $users              = [];
         /** @var RaidMember $raidMemberEntity */
         foreach ($raidMemberEntities as $raidMemberEntity) {
-            $raidMember                 = $raidMemberEntity->getUser()->toArray(2, ['guid', 'password', 'createdAt', 'updatedAt', 'sidebar_navigation']);
+            $raidMember                 = $raidMemberEntity->getUser()->toArray(2, ['guid', 'password', 'createdAt', 'updatedAt', 'sidebar_navigation', 'dkp']);
             $raidMember['role']         = $raidMemberEntity->getRole();
             $raidMember['member_state'] = $raidMemberEntity->getMemberState();
+            $raidMember['dkp']          = $dkpService->getUserDkp($raidMember['id'])['total'];
             $users[]                    = $raidMember;
         }
 

@@ -6,6 +6,7 @@ use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use FrontendUserManagement\Services\AccountNavigationService;
 use LootTable\Controller\Frontend\FrontendLootTableController;
+use LootTable\Models\Item;
 use LootTable\Models\LootItem;
 use LootTable\Models\LootPreference;
 use LootTable\Services\LootManagementService;
@@ -26,6 +27,7 @@ class Bootstrap extends AbstractBootstrap {
     $this->models = [
         LootItem::class,
         LootPreference::class,
+        Item::class,
     ];
     $this->endpoints = [
         FrontendLootTableController::class,
