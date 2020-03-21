@@ -9,7 +9,9 @@
 
                 {% block account__content %}
                     <div class="account__content">
-                        <h2 class="account__title">Deine DKP: {{ user_dkp.total }}</h2>
+                        <h2 class="account__title">Deine DKP: <span
+                                style="color: {% if user_dkp.total > 0 %}lime{% else %}red{% endif %}">{{ user_dkp.total }}</span>
+                        </h2>
 
                         <table class="dkp_table dkp_history">
                             <thead>
@@ -34,7 +36,7 @@
                                     <td>
                                         {{ entry.createdAt|date('d.m.Y') }}
                                     </td>
-                                    <td>
+                                    <td {% if entry.raid.title is not empty %}data-tippy-content="Raid am {{ entry.raid.date.date|date('d.m.Y') }}"{% endif %}>
                                         {% if entry.raid.title is not empty %}
                                             {{ entry.raid.title }}
                                         {% else %}

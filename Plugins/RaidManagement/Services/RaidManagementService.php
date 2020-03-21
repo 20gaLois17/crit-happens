@@ -119,32 +119,7 @@ class RaidManagementService extends AbstractDatabaseAccess {
         return $roles;
     }
 
-    /**
-     * @param $raid_id
-     * @param $amount
-     *
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function grantAttendanceDkp($raid_id, $amount) {
-        $em = Oforge()->DB()->getForgeEntityManager();
-        /** @var RaidEvent $raid */
-        $raid = $em->getRepository(RaidEvent::class)->find($raid_id);
-        if ($raid->getDate() > new DateTime('now')) {
-            die("this raid is not over yet \n");
-        }
-        $raidMemberEntities = $em->getRepository(RaidMember::class)->findBy(['raid' => $raid_id]);
 
-        /** @var RaidMember $raidMemberEntity */
-        foreach ($raidMemberEntities as $raidMemberEntity) {
-            $raidMember = $raidMemberEntity->getUser();
-            $currentDkp = $raidMember->getDkp();
-            $raidMember->setDkp($currentDkp + $amount);
-            $em->update($raidMember);
-            //$em->remove($raidMemberEntity);
-        }
-        print("dkp has been granted \n");
-    }
 
     /**
      * @param string $date

@@ -40,7 +40,10 @@ class BackendDkpController extends BaseCrudController {
                 'update' => 'readonly',
                 'delete' => 'readonly',
             ],
-            'list'  => 'getSelectUsers',
+            'list'   => 'getSelectUsers',
+            'editor' => [
+                'required' => true,
+            ],
         ],
         [
             'name'  => 'raid',
@@ -79,6 +82,9 @@ class BackendDkpController extends BaseCrudController {
                 'update' => 'editable',
                 'delete' => 'readonly',
             ],
+            'editor' => [
+                'required' => true,
+            ],
         ],
         [
             'name'  => 'description',
@@ -112,6 +118,11 @@ class BackendDkpController extends BaseCrudController {
             'label' => ['key' => 'name', 'default' => 'Name'],
             'list'  => 'getSelectUsers',
         ],
+    ];
+
+
+    protected $indexOrderBy = [
+
     ];
 
     protected $indexPagination = [
