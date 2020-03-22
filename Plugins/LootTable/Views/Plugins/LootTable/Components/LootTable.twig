@@ -48,7 +48,7 @@
                     <p style='text-decoration: underline'>BiS:</p>
                     {% for user in loot_preferences_items[item.id] %}
                         {% if user.demand == 2 %}
-                    <h3 class='color-{{ user.class }}'>{{ name }} [{{ dkp_lookup[user.name] }}]</h3>{% endif %}{% endfor %}">
+                    <h3 class='color-{{ user.class }}'>{{ user.name }} [{{ dkp_lookup[user.name] }}]</h3>{% endif %}{% endfor %}">
                     <icon>
                         <svg class="icon icon--primary">
                             <use xlink:href="#insertion"></use>
