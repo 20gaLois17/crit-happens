@@ -6,6 +6,8 @@ use Dkp\Models\DkpEntry;
 use Doctrine\ORM\ORMException;
 use FrontendUserManagement\Models\User;
 use FrontendUserManagement\Services\UserService;
+use LootTable\Models\Item;
+use LootTable\Services\LootManagementService;
 use Oforge\Engine\Modules\Core\Abstracts\AbstractModel;
 use Oforge\Engine\Modules\Core\Annotation\Endpoint\EndpointClass;
 use Oforge\Engine\Modules\Core\Exceptions\NotFoundException;
@@ -15,6 +17,7 @@ use Oforge\Engine\Modules\CRUD\Controller\Backend\BaseCrudController;
 use Oforge\Engine\Modules\CRUD\Enum\CrudDataTypes;
 use Oforge\Engine\Modules\CRUD\Enum\CrudFilterType;
 use Oforge\Engine\Modules\I18n\Helper\I18N;
+use phpDocumentor\Reflection\Types\Null_;
 use RaidManagement\Models\RaidEvent;
 use RaidManagement\Services\RaidManagementService;
 
@@ -158,7 +161,7 @@ class BackendDkpController extends BaseCrudController {
         /** @var RaidManagementService $raidService */
         $raidService = Oforge()->Services()->get('raid.management');
 
-        $results      = [];
+        $results      = [null];
         $raidEntities = $raidService->repository('raid')->findBy(['active' => true]);
 
         /** @var RaidEvent[] $raidEntities */
@@ -169,6 +172,27 @@ class BackendDkpController extends BaseCrudController {
         return $results;
     }
 
+    /**
+     * @return array
+     * @throws ORMException
+     * @throws ServiceNotFoundException
+     */
+    protected function getSelectItems() : array {
+        /** @var LootManagementService $lootService */
+        $lootService = Oforge()->Services()->get('loot.management');
+
+        $results      = [null];
+        $itemEntities = $lootService->repository('item_new')->findBy([], ['title' => 'ASC']);
+
+        /** @var Item $itemEntity */
+        foreach ($itemEntities as $itemEntity) {
+            $results[$itemEntity->getId()] = $itemEntity->getTitle();
+        }
+
+        return $results;
+
+    }
+
     protected function prepareItemDataArray(?AbstractModel $entity, string $crudAction) : array {
         $itemData = parent::prepareItemDataArray($entity, $crudAction);
         if (isset($itemData['user']['id'])) {
@@ -177,18 +201,29 @@ class BackendDkpController extends BaseCrudController {
         if (isset($itemData['raid']['id'])) {
             $itemData['raid'] = $itemData['raid']['id'];
         }
+        if (isset($itemData['item']['id'])) {
+            $itemData['item'] = $itemData['item']['id'];
+        }
 
         return $itemData;
     }
 
+    /**
+     * @param array $data
+     * @param string $crudAction
+     *
+     * @return array
+     * @throws NotFoundException
+     */
     protected function convertData(array $data, string $crudAction) : array {
         /** @var ForgeEntityManager $entityManager */
         $entityManager = Oforge()->DB()->getForgeEntityManager();
 
         $userId = $data['user'];
         $raidId = $data['raid'];
+        $itemId = $data['item'];
         /** @var User|null $user */
-        $user = $entityManager->getRepository(User::class)->findOneBy(['id' => $userId]);
+        $user = $entityManager->getRepository(User::class)->find($userId);
         if (!isset($user)) {
             throw new NotFoundException(sprintf(#
                 I18N::translate('plugin_dkp_user_not_found', [
@@ -198,19 +233,40 @@ class BackendDkpController extends BaseCrudController {
                 $userId)#
             );
         }
-        /** @var RaidEvent|null $raid */
-        $raid = $entityManager->getRepository(RaidEvent::class)->findOneBy(['id' => $raidId]);
-        if (!isset($raid)) {
-            throw new NotFoundException(sprintf(#
-                I18N::translate('plugin_dkp_raid_not_found', [
-                    'en' => 'Raid with ID "%s" not found.',
-                    'de' => 'Raid mit der ID "%s" wurde nicht gefunden.',
-                ]),#
-                $raid)#
-            );
-        }
         $data['user'] = $user;
-        $data['raid'] = $raid;
+
+        /** @var RaidEvent|null $raid */
+        if ($raidId !== "0") {
+            $raid = $entityManager->getRepository(RaidEvent::class)->find($raidId);
+            if (!isset($raid)) {
+                throw new NotFoundException(sprintf(#
+                    I18N::translate('plugin_dkp_raid_not_found', [
+                        'en' => 'Raid with ID "%s" not found.',
+                        'de' => 'Raid mit der ID "%s" wurde nicht gefunden.',
+                    ]),#
+                    $raidId)#
+                );
+            }
+            $data['raid'] = $raid;
+        } else {
+            unset($data['raid']);
+        }
+        if ($itemId !== "0") {
+            $item = $entityManager->getRepository(Item::class)->find($itemId);
+            if (!isset($item)) {
+                throw new NotFoundException(sprintf(#
+                    I18N::translate('plugin_dkp_item_not_found', [
+                        'en' => 'Item with ID "%s" not found.',
+                        'de' => 'Item mit der ID "%s" wurde nicht gefunden.',
+                    ]),#
+                    $itemId)#
+                );
+            }
+            $data['item'] = $item;
+        } else {
+            unset($data['item']);
+        }
+
 
         return parent::convertData($data, $crudAction);
     }

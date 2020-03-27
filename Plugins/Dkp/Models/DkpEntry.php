@@ -36,7 +36,7 @@ class DkpEntry extends AbstractModel {
     private $raid;
     /**
      * @var Item
-     * @ORM\ManyToone(targetEntity="LootTable\Models\Item")
+     * @ORM\ManyToOne(targetEntity="LootTable\Models\Item")
      */
     private $item;
     /**
@@ -104,11 +104,11 @@ class DkpEntry extends AbstractModel {
     }
 
     /**
-     * @param RaidEvent $raid
+     * @param null|RaidEvent $raid
      *
      * @return DkpEntry
      */
-    public function setRaid(RaidEvent $raid) : DkpEntry {
+    public function setRaid(?RaidEvent $raid) : DkpEntry {
         $this->raid = $raid;
 
         return $this;
@@ -122,11 +122,11 @@ class DkpEntry extends AbstractModel {
     }
 
     /**
-     * @param int $item
+     * @param Item $item
      *
      * @return DkpEntry
      */
-    public function setItem(?int $item) : DkpEntry {
+    public function setItem(?Item $item) : DkpEntry {
         $this->item = $item;
 
         return $this;

@@ -45,7 +45,7 @@
                                     </td>
                                     <td>
                                         {% if entry.item is not empty %}
-                                            <!-- Do some cool stuff with power.js -->
+                                            <a href="https://de.classic.wowhead.com/item={{ entry.item.itemNumber }}"></a>
                                         {% else %}
                                             {{ entry.description }}
                                         {% endif %}
@@ -62,4 +62,13 @@
             </div>
         {% endblock account %}
     </div>
+    <script>
+        var whTooltips = {
+            colorLinks: false,
+            iconizeLinks: true,
+            renameLinks: false,
+            iconSize: 'small',
+            dropchance: true,
+        };
+    </script>
 {% endblock content %}
