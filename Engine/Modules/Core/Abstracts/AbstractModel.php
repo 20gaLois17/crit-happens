@@ -3,7 +3,9 @@
 namespace Oforge\Engine\Modules\Core\Abstracts;
 
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping\MappingException;
 use Doctrine\ORM\ORMException;
+use Exception;
 use ReflectionException;
 use ReflectionMethod;
 
@@ -91,7 +93,11 @@ abstract class AbstractModel {
                     if (isset($classObject)) {
                         $className = $classObject->getName();
                         if (isset($className)) {
-                            $value = Oforge()->DB()->getForgeEntityManager()->getRepository($className)->find($value);
+                            try {
+                                $value = Oforge()->DB()->getForgeEntityManager()->getRepository($className)->find($value);
+                            } catch(Exception $e) {
+                                // $className could have been DateTime, which in most cases is not an entity in the system
+                            }
                         }
                     } else {
                         switch ("" . $params[0]->getType()) {

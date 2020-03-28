@@ -61,7 +61,6 @@ class RaidEvent extends AbstractModel {
     private $icon;
 
     public function __construct() {
-        $this->date = new DateTime();
         $this->deadline = new DateTime();
     }
 
