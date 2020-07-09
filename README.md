@@ -1,6 +1,5 @@
-# Oforge
-
 ## About
+This project is a fork from the original oforge-core project.
 Oforge is a highly modular online portal, 
 that can be easily customized or extended, based on customer needs.
 
@@ -9,11 +8,6 @@ The core is based on the Slim PHP micro framework and the well-proven Doctrine p
 
 - https://www.slimframework.com/
 - https://www.doctrine-project.org
-
-## Naming Conventions
-
-Please use underlines as separators for config key, i18n key, service names, path names and s.o. . 
-E.g. config key for the email smtp port should be `email_smtp_port`.
 
 ## License
 Copyright (C) 2019 7P.konzepte GmbH
