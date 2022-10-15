@@ -10,7 +10,7 @@ As soon as I got bored with WoW (which did not take too long), I started to focu
  - DKP Overview
  - Registration for Raid Nights -> automatic generation of a Raid-Roaster 24h before a raid
  - ... 
-Looking at the code now, I would have done things differently, but much time has passed and I don't feed too ashamed anymore to make this repo public ;)
+Looking at the code now, I would have done things differently, but much time has passed and I don't feel too ashamed anymore to make this repo public ;)
 
 ## The Core
 The core is based on the Slim PHP micro framework and the well-proven Doctrine project.
