@@ -3,6 +3,15 @@ This project is a fork from the original oforge-core project.
 Oforge is a highly modular online portal, 
 that can be easily customized or extended, based on customer needs.
 
+(Info 10/2022):
+I used the oforge core to bootstrap a guild page in late 2019 shortly after the release of Classic WoW
+As soon as I got bored with WoW, I started to focuss more on the guild page and implemented a couple of features. For a couple of months this became a passion project, as the site had about 70 active guild members at one time. Some of the implemented features where:
+ - Loot tables
+ - DKP Overview
+ - Registration for Raid Nights -> automatic generation of a Raid-Roaster 24h before a raid
+ - ... 
+Looking at the code now, I would have done things differently, but much time has passed and I don't feed too ashamed anymore to make this repo public ;)
+
 ## The Core
 The core is based on the Slim PHP micro framework and the well-proven Doctrine project.
 
