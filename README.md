@@ -4,9 +4,9 @@ Oforge is a highly modular online portal,
 that can be easily customized or extended, based on customer needs.
 
 (Info 10/2022):
-I used the oforge core to bootstrap a guild page in late 2019 shortly after the release of Classic WoW
-As soon as I got bored with WoW, I started to focuss more on the guild page and implemented a couple of features. For a couple of months this became a passion project, as the site had about 70 active guild members at one time. Some of the implemented features where:
- - Loot tables
+I used the oforge core to bootstrap a guild page in late 2019 shortly after the release of Classic WoW.
+As soon as I got bored with WoW (which did not take too long), I started to focus more on the guild page and implemented a couple of features. For some months, this guild page was a passion project of mine - as the site had about 70 active guild members at that time. Some of the implemented features where:
+ - Loot tables -> Guild Members could declare need in advance
  - DKP Overview
  - Registration for Raid Nights -> automatic generation of a Raid-Roaster 24h before a raid
  - ... 
